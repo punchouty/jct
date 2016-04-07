@@ -1825,7 +1825,9 @@ public class ContentConfigServiceImpl implements IContentConfigService{
 					fileName = "AS_AFTER_INSTRUCTION";
 				}
 				instruction.setJctInstructionType("TEXTANDVIDEO");
-				instruction.setJctVideoPath("../../JCT_VIDEO/VIDEO-"+fileName+"-"+key+".mp4");
+				String videoPath = this.messageSource.getMessage("video.path",null, null);
+				instruction.setJctVideoPath(videoPath + "JCT_VIDEO/VIDEO-"+fileName+"-"+key+".mp4");
+//				instruction.setJctVideoPath("../../JCT_VIDEO/VIDEO-"+fileName+"-"+key+".mp4");
 			} else {
 				instruction.setJctInstructionType("TEXT");
 			}
@@ -1861,7 +1863,10 @@ public class ContentConfigServiceImpl implements IContentConfigService{
 	
 	private boolean saveFileOnDisk (byte[] bytes, String fileType, String fileName, int videoFileId) throws IOException {
 		boolean isSuccess = false;
-		File videoFile = new File("../webapps/JCT_VIDEO/VIDEO-" + fileName +
+//		File videoFile = new File("../webapps/JCT_VIDEO/VIDEO-" + fileName +
+//   				"-" + videoFileId+ ".mp4");
+		String videoPath = this.messageSource.getMessage("video.path",null, null);
+		File videoFile = new File(videoPath + "JCT_VIDEO/VIDEO-" + fileName +
    				"-" + videoFileId+ ".mp4");
 		/*File videoFile = new File("D:/JCT_SOFTWARE/apache-tomcat-6.0.44/webapps/JCT_VIDEO/VIDEO-" + fileName +
    				"-" + videoFileId+ ".mp4");*/

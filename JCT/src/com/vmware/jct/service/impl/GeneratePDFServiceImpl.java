@@ -311,7 +311,7 @@ public class GeneratePDFServiceImpl implements IGeneratePDFService{
 				beforeSketchtable.setWidthPercentage(98);
 				beforeSketchtable.getDefaultCell().setBorder(0);
 				
-				cell = new PdfPCell(new Phrase("Before Sketch: How you’ve previously spent your time and energy in your job" , tableKeyFont));
+				cell = new PdfPCell(new Phrase("Before Sketch: How you've previously spent your time and energy in your job" , tableKeyFont));
 				cell.setBorderColor(blue);
 				beforeSketchtable.addCell(cell);
 				//Fetch the byte[] of before Sketch
@@ -346,7 +346,7 @@ public class GeneratePDFServiceImpl implements IGeneratePDFService{
 				PdfPTable qtntable = new PdfPTable(1); //1 column
 				qtntable.setWidthPercentage(98);
 				qtntable.getDefaultCell().setBorder(0);
-				cell = new PdfPCell(new Phrase("Reflection Questions – Before Sketch", tableKeyFont));
+				cell = new PdfPCell(new Phrase("Reflection Questions - Before Sketch", tableKeyFont));
 				cell.setBorderColor(blue);
 				qtntable.addCell(cell);
 				String subQuestion = "";

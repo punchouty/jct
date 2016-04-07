@@ -7,10 +7,10 @@
 		</layout>
 	</appender> -->
 <appender name="dailyRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <file>E:/jct_app_logs/jct_tool_log/jct_tool.log</file>
+    <file>/data/logs/jct_tool.log</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
     	<!-- daily rollover -->
-     	<FileNamePattern>E:/jct_app_logs/jct_tool_log/jct_tool-%d{yyyy-MM-dd}.log</FileNamePattern>         
+     	<FileNamePattern>/data/logs/jct_tool-%d{yyyy-MM-dd}.log</FileNamePattern>         
     </rollingPolicy>
     <encoder>
     	<Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n</Pattern>

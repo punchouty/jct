@@ -124,6 +124,12 @@ function fetchInstructionData(objVal) {
  * @param instructionId
  */
 function populateInstructionDataTable(instructionData, instructionId, insType, videoLink) {
+	// Changes by Rajan to match different URL context
+	if(videoLink) {
+		//adding /admin url  - HARDCODING
+		videoLink = "/admin" + videoLink;
+	}
+	// Changes by Rajan end
 	CKEDITOR.instances['editor1'].insertHtml(instructionData);
 	/*$('#editor1').htmlarea('html', instructionData);*/
 	document.getElementById("instructionUpdateDiv").setAttribute("style", "display:block");

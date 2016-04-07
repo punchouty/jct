@@ -143,6 +143,12 @@ function changeVideo(obj) {
 }
 
 function plotVideo (videoLink, desc) {
+	// Changes by Rajan to match different URL context
+	if(videoLink) {
+		//adding /admin url  - HARDCODING
+		videoLink = "/admin" + videoLink;
+	}
+	// Changes by Rajan end
 	document.getElementById("existing_data_div").style.display = "block";
 	var plot = document.getElementById("videoSection");
 	plot.innerHTML = "";
@@ -171,9 +177,15 @@ function plotTextAndVideo (obj) {
 		}
 	}, 100);
 	if (obj.videoLink){
+		// Changes by Rajan to match different URL context
+		var videoLink = obj.videoLink;
+		//adding /admin url  - HARDCODING
+		videoLink = "/admin" + videoLink;
 		document.getElementById('existing_list_Id').innerHTML = "Existing Video";
 		document.getElementById("hiddenFileName").value = obj.videoLink;	
-		plot.innerHTML = "<div align='center'><video width='25%' poster='../img/frame.jpg' controls preload='auto'><source src='"+obj.videoLink+"' type='video/mp4'></video>";
+		//Earlier code // plot.innerHTML = "<div align='center'><video width='25%' poster='../img/frame.jpg' controls preload='auto'><source src='"+obj.videoLink+"' type='video/mp4'></video>";
+		plot.innerHTML = "<div align='center'><video width='25%' poster='../img/frame.jpg' controls preload='auto'><source src='"+videoLink+"' type='video/mp4'></video>";
+		// Changes by Rajan end
 	} else {
 		plot.innerHTML = "";		
 		document.getElementById("existing_data_div").style.display = "none";

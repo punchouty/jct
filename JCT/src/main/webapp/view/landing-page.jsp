@@ -55,11 +55,17 @@
                   <div class="video-section">
                     <h3 class="page-title"><spring:message code="label.watch.video"/></h3>
                     <video width="75%" poster="../img/frame.jpg" controls preload="auto">
-					    <source src="../../JCT_VIDEO/JobCrafting_MP4.mp4" type="video/mp4">
+					    <!-- <source src="../../JCT_VIDEO/JobCrafting_MP4.mp4" type="video/mp4">
 					    <source src="../../JCT_VIDEO/JobCrafting_WEBM.webm" type="video/webm">
 					    <source src="../../JCT_VIDEO/JobCrafting_OGV.ogv" type="video/ogv">
 					    <object data="../../JCT_VIDEO/JobCrafting_SWF.swf">
     						<embed src="../../JCT_VIDEO/JobCrafting_SWF.swf">
+ 						</object> -->
+ 						<source src="/user/data/video/JCT_VIDEO/JobCrafting_MP4.mp4" type="video/mp4">
+					    <source src="/user/data/video/JCT_VIDEO/JobCrafting_WEBM.webm" type="video/webm">
+					    <source src="/user/data/video/JCT_VIDEO/JobCrafting_OGV.ogv" type="video/ogv">
+					    <object data="/user/data/video/JCT_VIDEO/JobCrafting_SWF.swf">
+    						<embed src="/user/data/video/JCT_VIDEO/JobCrafting_SWF.swf">
  						</object>
 					</video> 
                   </div>

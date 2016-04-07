@@ -32,6 +32,7 @@
     <mvc:resources mapping="/lib/**" location="/lib/"/>
     <mvc:resources mapping="/view/**" location="/view/"/>
     <mvc:resources mapping="/font/**" location="/font/"/> 
+    <mvc:resources mapping="/data/**" location="file:/data/"/>
     
     
     
@@ -40,17 +41,20 @@
     
    <!-- MAIL -->
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-	<property name="host" value="smtp.va1.emailserver.com" />
+	<property name="host" value="email-smtp.us-west-2.amazonaws.com" />
 	<property name="port" value="587" />
-	<property name="username" value="jctadmin@interra-demo.com" />
-	<property name="password" value="India@2014" />
+	<property name="username" value="AKIAJ4VP46EP5V4P7ABQ" />
+	<property name="password" value="Al9scbFsZ2+3i1A5xrRFW8hnXrIvit2JZzdae0lg+GJV" />
  
 	<property name="javaMailProperties">
 	   <props>
-       	      <prop key="mail.debug">true</prop>
+       	      <!-- <prop key="mail.debug">true</prop> -->
        	      <!-- <prop key="mail.smtp.socketFactory.port">25</prop> -->
+       	      <prop key="mail.transport.protocol">smtp</prop>
+       	      <prop key="mail.smtp.port">587</prop>
+       	      <prop key="mail.smtp.auth">true</prop>
        	      <prop key="mail.smtp.starttls.enable">true</prop>
-       	      <!-- <prop key="mail.transport.protocol">smtp</prop> -->
+       	      <prop key="mail.smtp.starttls.required">true</prop>
        	   </props>
 	</property>
 	</bean>

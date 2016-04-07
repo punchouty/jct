@@ -51,6 +51,7 @@
     <mvc:resources mapping="/lib/**" location="/lib/"/>
     <mvc:resources mapping="/view/**" location="/view/"/>
     <mvc:resources mapping="/font/**" location="/font/"/> 
+    <mvc:resources mapping="/data/**" location="file:/data/"/>
     
 	<!-- Setup tiles -->
 	

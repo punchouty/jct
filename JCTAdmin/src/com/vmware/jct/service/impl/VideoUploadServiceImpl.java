@@ -11,6 +11,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +35,9 @@ public class VideoUploadServiceImpl implements IVideoUploadService {
 	
 	@Autowired
 	private IVideoUploadDAO videoUploadDAO;
+	
+	@Autowired  
+	private MessageSource messageSource;
 	
 	@Transactional(propagation = Propagation.REQUIRED)
 	public String saveVideo(int profileId, byte[] bytes, String fileName,
@@ -74,8 +78,11 @@ public class VideoUploadServiceImpl implements IVideoUploadService {
 	
 	private boolean saveFileOnDisk (byte[] bytes, String fileType, String fileName, int videoFileId) throws IOException {
 		boolean isSuccess = false;
-		File videoFile = new File("../webapps/JCT_VIDEO/VIDEO-" + fileType +
+		String videoPath = this.messageSource.getMessage("video.path",null, null);
+		File videoFile = new File(videoPath + "/JCT_VIDEO/VIDEO-" + fileType +
    				"-" + videoFileId + fileName.substring(fileName.indexOf("."), fileName.length()));
+//		File videoFile = new File("../webapps/JCT_VIDEO/VIDEO-" + fileType +
+//   				"-" + videoFileId + fileName.substring(fileName.indexOf("."), fileName.length()));
 		BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(videoFile));
 		LOGGER.info("VIDEO FILE --> "+videoFile.getAbsolutePath());
 		stream.write(bytes);
@@ -114,7 +121,8 @@ public class VideoUploadServiceImpl implements IVideoUploadService {
 		} else if (fileName.contains(temp)) {
 			obj.setJctPopupInstructionVideoName(fileName);
 		} else {
-			obj.setJctPopupInstructionVideoName("../../JCT_VIDEO/VIDEO-" + fileType + "-" + videoFileId + fileName.substring(fileName.indexOf("."), fileName.length()));
+			String videoPath = this.messageSource.getMessage("video.path",null, null);
+			obj.setJctPopupInstructionVideoName(videoPath + "JCT_VIDEO/VIDEO-" + fileType + "-" + videoFileId + fileName.substring(fileName.indexOf("."), fileName.length()));
 		}
 		
 		/*if(null == instructionText || instructionText == "") {

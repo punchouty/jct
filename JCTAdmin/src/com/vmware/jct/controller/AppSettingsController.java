@@ -78,6 +78,7 @@ public class AppSettingsController extends BasicController {
 		String jctEmail = node.get("jctEmail").asText();
 		//check if image is provided
 		byte[] imageInByte = null;
+		//LOGGER.info(">>>>>> AppSettingsController.saveAppSettings : file : " + file);
 		if (!file.toString().replaceAll("\"", "").equals("NC")) {
 			imageInByte = EncoderDecoder.getImageBytes(file.substring(file.indexOf(",") + 1, file.length()));
 		}
@@ -182,15 +183,23 @@ public class AppSettingsController extends BasicController {
 									    "width: 0;"+
 									"}";
 		String dirLoc = this.messageSource.getMessage("jct.build.path",null, null);
+		LOGGER.info(">>>>>> AppSettingsController.whiteLebel : " + dirLoc);
 		File saveDir = new File(dirLoc); //webapps
 		//Here comes the existence check
 		if(!saveDir.exists())
 			saveDir.mkdirs();
 		
 		if (null != imageInByte) {
-			InputStream in = new ByteArrayInputStream(imageInByte);
-			BufferedImage bImageFromConvert = ImageIO.read(in);
-			ImageIO.write(bImageFromConvert, "png", new File(dirLoc+"/logo.png"));
+			LOGGER.info(">>>>>> AppSettingsController.whiteLebel : " + saveDir.getAbsoluteFile());
+			try {
+				InputStream in = new ByteArrayInputStream(imageInByte);
+				BufferedImage bImageFromConvert = ImageIO.read(in);
+				ImageIO.write(bImageFromConvert, "png", new File(dirLoc+"/logo.png"));
+			} catch (Exception e) {
+				LOGGER.info(">>>>>> AppSettingsController.whiteLebel : writing logo file exception : " + e.getMessage());
+				e.printStackTrace();
+			}
+			LOGGER.info(">>>>>> AppSettingsController.whiteLebel : writing logo file done");
 		}
 		
 		StringTokenizer cssToken = new StringTokenizer(cssDefaultString, "}");
@@ -360,6 +369,8 @@ public class AppSettingsController extends BasicController {
 		File file;
 		try {
 			file = new File(dirLoc+"/commonStyle.css");
+
+			LOGGER.info(">>>>>> AppSettingsController.whiteLebel : commonStyle.css : " + file.getAbsolutePath());
 			fop = new FileOutputStream(file);
  			// if file doesnt exists, then create it
 			if (!file.exists()) {
@@ -370,7 +381,9 @@ public class AppSettingsController extends BasicController {
 			bw.write(cssBuilder.toString());
 			bw.close();
 			status = "passed";
+			LOGGER.info(">>>>>> AppSettingsController.whiteLebel : commonStyle.css : success");
 		} catch (IOException e) {
+			LOGGER.info(">>>>>> AppSettingsController.whiteLebel : commonStyle.css : fail : " + e.getMessage());
 			LOGGER.error(e.getLocalizedMessage());
 		} finally {
 			try {

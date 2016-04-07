@@ -54,6 +54,10 @@ function populateInstruction() {
 function populateInstructionData(instructionDesc, videoUrl){
 	if (videoUrl != null) {
 		document.getElementById("watchVideoId").style.display = "block";
+		// Changes by Rajan to match different URL context
+		//adding /user url  - HARDCODING
+		videoUrl = "/user" + videoUrl;
+		// Changes by Rajan end
 		sessionStorage.setItem("videoLink", videoUrl);
 		document.getElementById("watchVideoId").innerHTML = "<a href='#' class='instruction_link' onclick='showVideo()'> Watch Video </a>";
 	}
