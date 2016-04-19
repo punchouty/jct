@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -29,6 +30,7 @@ import com.vmware.jct.common.utility.EncoderDecoder;
 import com.vmware.jct.common.utility.StatusConstants;
 import com.vmware.jct.exception.JCTException;
 import com.vmware.jct.service.IAppSettingsService;
+import com.vmware.jct.service.IStorageService;
 import com.vmware.jct.service.vo.AppSettingsVO;
 
 /**
@@ -55,6 +57,9 @@ public class AppSettingsController extends BasicController {
 	
 	@Autowired
 	private IAppSettingsService appSettingsService;
+	
+	@Autowired
+	private IStorageService storageService;
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(AppSettingsController.class);
 	/**
@@ -195,6 +200,7 @@ public class AppSettingsController extends BasicController {
 				InputStream in = new ByteArrayInputStream(imageInByte);
 				BufferedImage bImageFromConvert = ImageIO.read(in);
 				ImageIO.write(bImageFromConvert, "png", new File(dirLoc+"/logo.png"));
+				storageService.store("images/logo.png", new FileInputStream(dirLoc+"/logo.png"), "image/png");
 			} catch (Exception e) {
 				LOGGER.info(">>>>>> AppSettingsController.whiteLebel : writing logo file exception : " + e.getMessage());
 				e.printStackTrace();
@@ -380,9 +386,13 @@ public class AppSettingsController extends BasicController {
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.write(cssBuilder.toString());
 			bw.close();
+			storageService.store("css/commonStyle.css", new FileInputStream(file), "text/css");
 			status = "passed";
 			LOGGER.info(">>>>>> AppSettingsController.whiteLebel : commonStyle.css : success");
 		} catch (IOException e) {
+			LOGGER.info(">>>>>> AppSettingsController.whiteLebel : commonStyle.css : fail : " + e.getMessage());
+			LOGGER.error(e.getLocalizedMessage());
+		} catch (Exception e) {
 			LOGGER.info(">>>>>> AppSettingsController.whiteLebel : commonStyle.css : fail : " + e.getMessage());
 			LOGGER.error(e.getLocalizedMessage());
 		} finally {

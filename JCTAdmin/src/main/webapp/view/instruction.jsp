@@ -190,7 +190,7 @@
 			/*
 			 * Style sheet for the contents
 			 */
-			contentsCss: 'assets/outputxhtml/outputxhtml.css',
+			contentsCss: '/admin/css/outputxhtml.css',
 
 			removePlugins: 'elementspath, magicline',
 			resize_enabled: false,

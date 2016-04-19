@@ -447,7 +447,7 @@ public class AfterSketchDAOImpl extends DataAccessObject implements IAfterSketch
 	 */
 	@Transactional(propagation=Propagation.REQUIRED,readOnly = true)
 	public Integer calculateDifference(String jobReferenceNos) throws DAOException {
-		return (Integer) sessionFactory.getCurrentSession().createSQLQuery("SELECT BeforeSketch_To_AfterSketch('"+jobReferenceNos+"')").uniqueResult();
+		return (Integer) sessionFactory.getCurrentSession().createSQLQuery("SELECT jct_before_sketch_to_after_sketch('"+jobReferenceNos+"')").uniqueResult();
 	}
 	
 	/**

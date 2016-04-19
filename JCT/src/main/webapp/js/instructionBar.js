@@ -56,7 +56,7 @@ function populateInstructionData(instructionDesc, videoUrl){
 		document.getElementById("watchVideoId").style.display = "block";
 		// Changes by Rajan to match different URL context
 		//adding /user url  - HARDCODING
-		videoUrl = "/user" + videoUrl;
+		videoUrl = "https://s3-us-west-2.amazonaws.com/jobcrafting/" + videoUrl;
 		// Changes by Rajan end
 		sessionStorage.setItem("videoLink", videoUrl);
 		document.getElementById("watchVideoId").innerHTML = "<a href='#' class='instruction_link' onclick='showVideo()'> Watch Video </a>";
@@ -135,7 +135,7 @@ function populatePopUp(){
 				document.getElementById("text_ins_before_video_id").innerHTML = obj.instructionTextBeforeVideo;				
 			}			
 			if(obj.instructionVideo) {
-				var vidString = (obj.instructionVideo);
+				var vidString = "https://s3-us-west-2.amazonaws.com/jobcrafting/" + obj.instructionVideo;
 				var extension = vidString.substring(vidString.length , vidString.length-3);
 				var instVid = document.getElementById("video_instruction_id");
 				var htmlString = "<video width='85%' controls='' preload='auto'>"

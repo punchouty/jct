@@ -401,7 +401,7 @@ public class ManageSeviceDAOImpl extends DataAccessObject implements IManageServ
 		int status = 0; //"failure";
 		try{
 			int successFailureFlag = (Integer) sessionFactory.getCurrentSession()
-					.createSQLQuery("SELECT update_facilitator_type_after_chk_realization("+headerId+", '"+custId+"', '"+createdBy+"')").uniqueResult();
+					.createSQLQuery("SELECT jct_update_facilitator_type_after_chk_realization("+headerId+", '"+custId+"', '"+createdBy+"')").uniqueResult();
 			if (successFailureFlag == 0)
 				status = 1;	// "success";
 		}catch(Exception ez){

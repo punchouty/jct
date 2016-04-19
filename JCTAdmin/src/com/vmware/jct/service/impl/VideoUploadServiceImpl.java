@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.activemq.util.ByteArrayInputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import com.vmware.jct.dao.IVideoUploadDAO;
 import com.vmware.jct.exception.DAOException;
 import com.vmware.jct.exception.JCTException;
 import com.vmware.jct.model.JctPopupInstruction;
+import com.vmware.jct.service.IStorageService;
 import com.vmware.jct.service.IVideoUploadService;
 import com.vmware.jct.service.vo.PopupInstructionVO;
 
@@ -39,11 +41,14 @@ public class VideoUploadServiceImpl implements IVideoUploadService {
 	@Autowired  
 	private MessageSource messageSource;
 	
+	@Autowired
+	private IStorageService storageService;
+	
 	@Transactional(propagation = Propagation.REQUIRED)
 	public String saveVideo(int profileId, byte[] bytes, String fileName,
 			String fileType, String instructionTextBeforeVideo, String instructionTextAfterVideo) throws JCTException {
 		String status = "failure";
-		boolean isSuccess;
+		boolean isSuccess = false;
 		LOGGER.info(">>>>>>>> VideoUploadServiceImpl.saveVideo");
 		String temp = "JCT_VIDEO";
 		try {
@@ -53,8 +58,11 @@ public class VideoUploadServiceImpl implements IVideoUploadService {
 			} else if(fileName.contains(temp)) {				
 				isSuccess = true;
 			} else {
-				//isSuccess = true;
-				isSuccess = saveFileOnDisk(bytes, fileType, fileName, videoFileId);
+				//
+				//isSuccess = saveFileOnDisk(bytes, fileType, fileName, videoFileId);
+				storageService.store(getVideoFilePath(fileType, fileName, videoFileId), new ByteArrayInputStream(bytes), "video/mp4");
+				isSuccess = true;
+				
 			}			
 			if (isSuccess) {
 				// Soft delete all the entries matching the criteria
@@ -76,6 +84,13 @@ public class VideoUploadServiceImpl implements IVideoUploadService {
 		return status;
 	}
 	
+	private String getVideoFilePath(String fileType, String fileName, int videoFileId) {
+		String baseVideoPath = this.messageSource.getMessage("video.path",null, null);
+		String videoFilePath = baseVideoPath + "/VIDEO-" + fileType + "-" + videoFileId + fileName.substring(fileName.indexOf("."), fileName.length());
+		return videoFilePath;
+	}
+	
+	@Deprecated
 	private boolean saveFileOnDisk (byte[] bytes, String fileType, String fileName, int videoFileId) throws IOException {
 		boolean isSuccess = false;
 		String videoPath = this.messageSource.getMessage("video.path",null, null);
@@ -121,8 +136,9 @@ public class VideoUploadServiceImpl implements IVideoUploadService {
 		} else if (fileName.contains(temp)) {
 			obj.setJctPopupInstructionVideoName(fileName);
 		} else {
-			String videoPath = this.messageSource.getMessage("video.path",null, null);
-			obj.setJctPopupInstructionVideoName(videoPath + "JCT_VIDEO/VIDEO-" + fileType + "-" + videoFileId + fileName.substring(fileName.indexOf("."), fileName.length()));
+//			String videoPath = this.messageSource.getMessage("video.path",null, null);
+//			obj.setJctPopupInstructionVideoName(videoPath + "JCT_VIDEO/VIDEO-" + fileType + "-" + videoFileId + fileName.substring(fileName.indexOf("."), fileName.length()));
+			obj.setJctPopupInstructionVideoName(getVideoFilePath(fileType, fileName, videoFileId));
 		}
 		
 		/*if(null == instructionText || instructionText == "") {

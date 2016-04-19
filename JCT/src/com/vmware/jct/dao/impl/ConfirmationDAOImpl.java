@@ -56,7 +56,7 @@ public class ConfirmationDAOImpl extends DataAccessObject implements IConfirmati
 		Integer successFailureFlag = 0; //0: success
 		try{
 			char decider = 'C';
-			successFailureFlag = (Integer) sessionFactory.getCurrentSession().createSQLQuery("SELECT updateStatus('"+jobReferenceNo+"', '"+decider+"')").uniqueResult();
+			successFailureFlag = (Integer) sessionFactory.getCurrentSession().createSQLQuery("SELECT jct_update_status('"+jobReferenceNo+"', '"+decider+"')").uniqueResult();
 			compFunctions(jobReferenceNo);
 			if(successFailureFlag == 1){
 				result = "failure";
@@ -81,7 +81,7 @@ public class ConfirmationDAOImpl extends DataAccessObject implements IConfirmati
 		Integer successFailureFlag = 0; //0: success
 		try{
 			char decider = 'Z';
-			successFailureFlag = (Integer) sessionFactory.getCurrentSession().createSQLQuery("SELECT updateStatus('"+jobReferenceNo+"', '"+decider+"')").uniqueResult();
+			successFailureFlag = (Integer) sessionFactory.getCurrentSession().createSQLQuery("SELECT jct_update_status('"+jobReferenceNo+"', '"+decider+"')").uniqueResult();
 			
 		} catch(Exception ex) {
 			logger.error(ex.getLocalizedMessage());
@@ -100,7 +100,7 @@ public class ConfirmationDAOImpl extends DataAccessObject implements IConfirmati
 		Integer successFailureFlag = 0; //0: success
 		try{
 			char decider = 'K';
-			successFailureFlag = (Integer) sessionFactory.getCurrentSession().createSQLQuery("SELECT updateStatus('"+jobReferenceNo+"', '"+decider+"')").uniqueResult();
+			successFailureFlag = (Integer) sessionFactory.getCurrentSession().createSQLQuery("SELECT jct_update_status('"+jobReferenceNo+"', '"+decider+"')").uniqueResult();
 			compFunctions(jobReferenceNo);
 		} catch(Exception ex) {
 			logger.error(ex.getLocalizedMessage());
@@ -122,7 +122,7 @@ public class ConfirmationDAOImpl extends DataAccessObject implements IConfirmati
 		Integer successFailureFlag = 0; //0: success
 		char decider = 'P';
 		try{
-			successFailureFlag = (Integer) sessionFactory.getCurrentSession().createSQLQuery("SELECT updateStatus('"+jobReferenceNo+"', '"+decider+"')").uniqueResult();
+			successFailureFlag = (Integer) sessionFactory.getCurrentSession().createSQLQuery("SELECT jct_update_status('"+jobReferenceNo+"', '"+decider+"')").uniqueResult();
 			compFunctions(jobReferenceNo);
 			if(successFailureFlag == 1){
 				result = "failure";
@@ -143,9 +143,9 @@ public class ConfirmationDAOImpl extends DataAccessObject implements IConfirmati
 	private String compFunctions(String jobReferenceNo)
 			throws DAOException {
 		logger.info(">>>> compFunctions.compFunctions"); 
-		Integer beforeSketchReturn = (Integer)sessionFactory.getCurrentSession().createSQLQuery("SELECT populateBeforeSketch('"+jobReferenceNo+"')").uniqueResult();
+		Integer beforeSketchReturn = (Integer)sessionFactory.getCurrentSession().createSQLQuery("SELECT jct_populate_before_sketch('"+jobReferenceNo+"')").uniqueResult();
 		logger.info("FUNCTION TO POPULATE BEFORE SKETCH FOR JOB REFERENCE NUMBER: "+jobReferenceNo+" RETURNED: "+beforeSketchReturn);
-		Integer afterSketchReturn = (Integer)sessionFactory.getCurrentSession().createSQLQuery("SELECT populateAfterSketch('"+jobReferenceNo+"')").uniqueResult();
+		Integer afterSketchReturn = (Integer)sessionFactory.getCurrentSession().createSQLQuery("SELECT jct_populate_after_sketch('"+jobReferenceNo+"')").uniqueResult();
 		logger.info("FUNCTION TO POPULATE AFTER SKETCH FOR JOB REFERENCE NUMBER: "+jobReferenceNo+" RETURNED: "+afterSketchReturn);
 		logger.info("<<<< compFunctions.compFunctions"); 
 		return null;
@@ -158,7 +158,7 @@ public class ConfirmationDAOImpl extends DataAccessObject implements IConfirmati
 	 */
 	public int disableStatus(String jobReferenceNo) throws DAOException {
 		char decider = 'P';
-		int successFailureFlag = (Integer) sessionFactory.getCurrentSession().createSQLQuery("SELECT updateStatus('"+jobReferenceNo+"', '"+decider+"')").uniqueResult();
+		int successFailureFlag = (Integer) sessionFactory.getCurrentSession().createSQLQuery("SELECT jct_update_status('"+jobReferenceNo+"', '"+decider+"')").uniqueResult();
 		compFunctions(jobReferenceNo);
 		return sessionFactory.getCurrentSession().getNamedQuery("disableStatusSearch")
 				.setParameter("jobRefNo", jobReferenceNo).executeUpdate();
@@ -208,7 +208,7 @@ public class ConfirmationDAOImpl extends DataAccessObject implements IConfirmati
 	 */
 	@Transactional(propagation=Propagation.REQUIRED)
 	public int restartExcersize(String jobReferenceNo, String distinction) throws DAOException {
-		int successFailureFlag = (Integer) sessionFactory.getCurrentSession().createSQLQuery("SELECT newDiagram('"+jobReferenceNo+"','"+distinction+"')").uniqueResult();
+		int successFailureFlag = (Integer) sessionFactory.getCurrentSession().createSQLQuery("SELECT jct_new_diagram('"+jobReferenceNo+"','"+distinction+"')").uniqueResult();
 		return successFailureFlag;
 	}
 	/**

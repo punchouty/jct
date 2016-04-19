@@ -8,14 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!-- <meta name="viewport" content="width=device-width" /> -->
     <!-- Bootstrap -->
-    <link href="../css/bootstrap.css" rel="stylesheet"> <!-- Bootstrap framework css  -->
-    <link href="../css/style.css" rel="stylesheet"> <!-- Main stylesheet for every resolution -->  
-    <link href="../css/less-600.css" rel="stylesheet"> <!-- mainly effected for google Nexus & less than 601 resolution -->
-    <link href="../css/less-550.css" rel="stylesheet"> <!-- mainly effected for Htc & less than 560 resolution -->
-    <link href="../css/less-768.css" rel="stylesheet"> <!-- mainly effected for S3 & less than 768 resolution --> 
-    <link href="../css/less-1280.css" rel="stylesheet"> <!-- mainly effected for Ipad & less than 1280 resolution -->
-    <link href="../css/style-1152.css" rel="stylesheet"> <!-- mainly effected for less than 1152-1270 resolution -->
-    <link href="../css/iphone_specific.css" rel="stylesheet"> <!-- mainly effected for Iphone & less than 481 resolution --> 
+    <link href="css/bootstrap.css" rel="stylesheet"> <!-- Bootstrap framework css  -->
+    <link href="css/style.css" rel="stylesheet"> <!-- Main stylesheet for every resolution -->  
+    <link href="css/less-600.css" rel="stylesheet"> <!-- mainly effected for google Nexus & less than 601 resolution -->
+    <link href="css/less-550.css" rel="stylesheet"> <!-- mainly effected for Htc & less than 560 resolution -->
+    <link href="css/less-768.css" rel="stylesheet"> <!-- mainly effected for S3 & less than 768 resolution --> 
+    <link href="css/less-1280.css" rel="stylesheet"> <!-- mainly effected for Ipad & less than 1280 resolution -->
+    <link href="css/style-1152.css" rel="stylesheet"> <!-- mainly effected for less than 1152-1270 resolution -->
+    <link href="css/iphone_specific.css" rel="stylesheet"> <!-- mainly effected for Iphone & less than 481 resolution --> 
     <script type="text/javascript" src="/user/js/common.js"></script>  
 </head>
 

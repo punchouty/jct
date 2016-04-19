@@ -74,6 +74,8 @@
 	                     		<!-- <i>If you haven forgotten your login credential,<a href="#" data-toggle="modal" data-target="#myModal-frgtpass" id="click"> click here</a> to reset.</i> -->	       
 	                     		<a href="#" data-toggle="modal" data-target="#myModal-frgtpass">Forgot / Reset Password</a>
 	                     	</div>
+	                     	<div class="col-md-12"><a href="http://tool.jobcrafting.com/user/">Student Login</a></div>
+                     
 	                     <div class="clearfix"></div>
 	                     </div> 
 	                     <div class="col-md-3">&nbsp;</div>  

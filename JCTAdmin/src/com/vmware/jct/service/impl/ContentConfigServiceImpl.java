@@ -1,7 +1,9 @@
 package com.vmware.jct.service.impl;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.apache.activemq.util.ByteArrayInputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +44,7 @@ import com.vmware.jct.model.JctRegion;
 import com.vmware.jct.model.JctUserProfile;
 import com.vmware.jct.model.JctTermsAndConditions;
 import com.vmware.jct.service.IContentConfigService;
+import com.vmware.jct.service.IStorageService;
 import com.vmware.jct.service.vo.ContentConfigVO;
 import com.vmware.jct.service.vo.InstructionVO;
 import com.vmware.jct.service.vo.JobAttributeVO;
@@ -106,6 +110,9 @@ public class ContentConfigServiceImpl implements IContentConfigService{
 	
 	@Autowired
 	private ICommonDao commonDaoImpl;
+	
+	@Autowired
+	private IStorageService storageService;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ContentConfigServiceImpl.class);
 	
@@ -1818,6 +1825,8 @@ public class ContentConfigServiceImpl implements IContentConfigService{
 			instruction.setJctInstructionBarDesc(instructionVO.getJctInstructionDesc());
 			instruction.setJctPageDetails(instructionVO.getJctRelatedPageDesc());
 			instruction.setJctProfilesDesc(instructionVO.getUserProfileName());
+			String baseVideoPath = this.messageSource.getMessage("video.path",null, null);
+			String videoPath = baseVideoPath + "VIDEO-" + fileName+"-"+key+".mp4";
 			if (instructionVO.getVideoFile().length != 0) {
 				if (instructionVO.getJctRelatedPageDesc().equals("Mapping Yourself")) {
 					fileName = "AS_MAP_INSTRUCTION";
@@ -1825,8 +1834,7 @@ public class ContentConfigServiceImpl implements IContentConfigService{
 					fileName = "AS_AFTER_INSTRUCTION";
 				}
 				instruction.setJctInstructionType("TEXTANDVIDEO");
-				String videoPath = this.messageSource.getMessage("video.path",null, null);
-				instruction.setJctVideoPath(videoPath + "JCT_VIDEO/VIDEO-"+fileName+"-"+key+".mp4");
+				instruction.setJctVideoPath(videoPath);
 //				instruction.setJctVideoPath("../../JCT_VIDEO/VIDEO-"+fileName+"-"+key+".mp4");
 			} else {
 				instruction.setJctInstructionType("TEXT");
@@ -1835,32 +1843,36 @@ public class ContentConfigServiceImpl implements IContentConfigService{
 			profile.setJctUserProfile(instructionVO.getUserProfileId());
 			instruction.setJctUserProfile(profile);
 			if (instructionVO.getVideoFile().length != 0) {
-				boolean isSuccess;
-				isSuccess = saveFileOnDisk(instructionVO.getVideoFile(), instructionVO.getJctRelatedPageDesc(), fileName, key);
-				if (isSuccess) {
-					status = serviceDAO.saveInstruction(instruction);
-				} else {
-					status = "failure";
-				}
-			} else {
-				status = serviceDAO.saveInstruction(instruction);
-			}
+				status = "success";
+				storageService.store(videoPath, new ByteArrayInputStream(instructionVO.getVideoFile()), "video/mp4");
+//				boolean isSuccess;
+//				isSuccess = saveFileOnDisk(instructionVO.getVideoFile(), instructionVO.getJctRelatedPageDesc(), fileName, key);
+//				if (isSuccess) {
+//					status = serviceDAO.saveInstruction(instruction);
+//				} else {
+//					status = "failure";
+//				}
+			} 
+			status = serviceDAO.saveInstruction(instruction);
 			if (!status.equals("success")) {
 				status = "failure";
 			}
 		} catch (DAOException e) {
 			LOGGER.error("----"+e.getLocalizedMessage()+" ----");
 			contentConfigVO.setStatusCode(StatusConstants.STATUS_FAILURE);
+			status = "failure";
 			throw new JCTException(e.getLocalizedMessage());
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			status = "failure";
 		}
 		LOGGER.info("<<<<<< ContentConfigServiceImpl.saveInstruction");
 		
 		return status;
 	}
 	
+	@Deprecated
 	private boolean saveFileOnDisk (byte[] bytes, String fileType, String fileName, int videoFileId) throws IOException {
 		boolean isSuccess = false;
 //		File videoFile = new File("../webapps/JCT_VIDEO/VIDEO-" + fileName +

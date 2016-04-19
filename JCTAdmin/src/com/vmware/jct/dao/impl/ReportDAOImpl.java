@@ -45,7 +45,7 @@ public class ReportDAOImpl implements IReportDAO {
 		StringBuilder jrNoBuilder = new StringBuilder("");
 		List<Object> returnList = null;
 		List<String> jrList = null;
-		queryBldr = new StringBuilder("Select distinct(bsview.jct_bs_created_by) from BeforeSketchView bsview");
+		queryBldr = new StringBuilder("Select distinct(bsview.jct_bs_created_by) from jct_before_sketch_view bsview");
 		if ((function.trim().length() > 0) && (jobLevel.trim().length() > 0)) {
 			queryBldr.append(" where bsview.jct_user_function_group = :fnGrp " +
 					"					and bsview.jct_user_levels = :jLevel and jct_bs_status_id = "+status+" and jct_bs_soft_delete = "+softDelete+"");
@@ -84,7 +84,7 @@ public class ReportDAOImpl implements IReportDAO {
 					"bsview.jct_user_function_group, " +
 					"bsview.jct_user_levels, bsview.jct_bs_task_desc, " +
 					"bsview.jct_bs_energy, bsview.jct_bs_time_spent " +
-					"from BeforeSketchView bsview");
+					"from jct_before_sketch_view bsview");
 			if ((function.trim().length() > 0) && (jobLevel.trim().length() > 0)) {
 				queryBldr.append(" where bsview.jct_user_function_group = :fnGrp " +
 						"and bsview.jct_user_levels = :jLevel");
@@ -135,7 +135,7 @@ public class ReportDAOImpl implements IReportDAO {
 		StringBuilder maxHeaderId = new StringBuilder("");
 		List<Object> returnList = null;
 		List<String> jrList = null;
-		queryBldr = new StringBuilder("select max(jct_bs_header_id),jct_bs_created_by  from beforesketchview bsview ");
+		queryBldr = new StringBuilder("select max(jct_bs_header_id),jct_bs_created_by  from jct_before_sketch_view bsview ");
 		if ((function.trim().length() > 0) && (jobLevel.trim().length() > 0)) {
 			queryBldr.append(" where bsview.jct_user_function_group = :fnGrp " +
 					"					and bsview.jct_user_levels = :jLevel and jct_bs_status_id = 5 and jct_bs_soft_delete = 1 group by jct_bs_created_by");
@@ -194,7 +194,7 @@ public class ReportDAOImpl implements IReportDAO {
 					"bsview.jct_user_function_group, " +
 					"bsview.jct_user_levels, bsview.jct_bs_task_desc, " +
 					"bsview.jct_bs_energy, bsview.jct_bs_time_spent " +
-					"from BeforeSketchView bsview");
+					"from jct_before_sketch_view bsview");
 			if ((function.trim().length() > 0) && (jobLevel.trim().length() > 0)) {
 				queryBldr.append(" where bsview.jct_user_function_group = :fnGrp " +
 						"and bsview.jct_user_levels = :jLevel");
@@ -243,7 +243,7 @@ public class ReportDAOImpl implements IReportDAO {
 		StringBuilder jrNoBuilder = new StringBuilder("");
 		List<String> jrList = null;
 		jrNoBuilder = new StringBuilder("Select distinct(bsview.jct_bs_created_by) " +
-				    						"from BeforeSketchView bsview");
+				    						"from jct_before_sketch_view bsview");
 		if ((function.trim().length() > 0) && (jobLevel.trim().length() > 0)) {
 			if (emailIdList == null) {
 			jrNoBuilder.append(" where bsview.jct_user_function_group = :fnGrp " +
@@ -307,7 +307,7 @@ public class ReportDAOImpl implements IReportDAO {
 		StringBuilder jrNoBuilder = new StringBuilder("");
 		List<String> jrList = null;
 		jrNoBuilder = new StringBuilder("Select distinct(bsview.jct_bs_header_id) " +
-				    						"from BeforeSketchView bsview");
+				    						"from jct_before_sketch_view bsview");
 		if ((function.trim().length() > 0) && (jobLevel.trim().length() > 0)) {
 			jrNoBuilder.append(" where bsview.jct_user_function_group = :fnGrp " +
 					"and bsview.jct_user_levels = :jLevel  and jct_bs_status_id = 5 and jct_bs_soft_delete = 1");
@@ -338,7 +338,7 @@ public class ReportDAOImpl implements IReportDAO {
 		StringBuilder jrNoBuilder = new StringBuilder("");
 		List<Object> returnList = null;
 		List<String> jrList = null;
-		queryBldr = new StringBuilder("Select distinct(bsview.jct_bs_created_by) from BeforeSketchView bsview");
+		queryBldr = new StringBuilder("Select distinct(bsview.jct_bs_created_by) from jct_before_sketch_view bsview");
 		if ((occupationCode.trim().length() > 0)) {
 			queryBldr.append(" where bsview.jct_user_occupation = :occupationCode " +
 					"					and jct_bs_status_id = "+status+" and jct_bs_soft_delete = "+softDelete+"");
@@ -364,7 +364,7 @@ public class ReportDAOImpl implements IReportDAO {
 					"bsview.jct_user_occupation, " +
 					"bsview.jct_user_levels, bsview.jct_bs_task_desc, " +
 					"bsview.jct_bs_energy, bsview.jct_bs_time_spent " +
-					"from BeforeSketchView bsview");
+					"from jct_before_sketch_view bsview");
 			if ((occupationCode.trim().length() > 0)) {
 				queryBldr.append(" where bsview.jct_user_occupation = :occupationCode ");
 				queryBldr.append(" and bsview.jct_bs_created_by in (" + jrNoBuilder.toString() + ") and jct_bs_status_id = "+status+" and jct_bs_soft_delete = "+softDelete+"");
@@ -396,7 +396,7 @@ public class ReportDAOImpl implements IReportDAO {
 		StringBuilder maxHeaderId = new StringBuilder("");
 		List<Object> returnList = null;
 		List<String> jrList = null;
-		queryBldr = new StringBuilder("select max(jct_bs_header_id),jct_bs_created_by  from beforesketchview bsview ");
+		queryBldr = new StringBuilder("select max(jct_bs_header_id),jct_bs_created_by  from jct_before_sketch_view bsview ");
 		if ((function.trim().length() > 0) && (jobLevel.trim().length() > 0)) {
 			queryBldr.append(" where bsview.jct_user_function_group = :fnGrp " +
 									"and bsview.jct_user_levels = :jLevel  and jct_bs_status_id = 5 and jct_bs_soft_delete = 1 group by jct_bs_created_by");
@@ -450,7 +450,7 @@ public class ReportDAOImpl implements IReportDAO {
 			queryBldr = new StringBuilder("Select bsview.jct_bs_created_by,bsview." +
 					"jct_user_function_group, bsview.jct_user_levels, " +
 					"bsview.jct_bs_task_desc, bsview.jct_bs_energy, " +
-					"bsview.jct_bs_time_spent from BeforeSketchView bsview");
+					"bsview.jct_bs_time_spent from jct_before_sketch_view bsview");
 			if ((function.trim().length() > 0) && (jobLevel.trim().length() > 0)) {
 				queryBldr.append(" where bsview.jct_user_function_group = :fnGrp " +
 						"and bsview.jct_user_levels = :jLevel");
@@ -499,7 +499,7 @@ public class ReportDAOImpl implements IReportDAO {
 		StringBuilder jrNoBuilder = new StringBuilder("");
 		List<Object> returnList = null;
 		List<String> jrList = null;
-		queryBldr = new StringBuilder("Select distinct(apview.jct_as_created_by) from ActionPlanView apview");
+		queryBldr = new StringBuilder("Select distinct(apview.jct_as_created_by) from jct_action_plan_view apview");
 		if ((occupation.trim().length() > 0) ) {
 			queryBldr.append(" where apview.jct_user_occupation = :fnGrp " +
 					"and jct_status_id="+statusId+" and jct_action_plan_soft_delete="+softDel+"");
@@ -528,7 +528,7 @@ public class ReportDAOImpl implements IReportDAO {
 			queryBldr = new StringBuilder("Select apview.jct_as_created_by, " +
 					"apview.jct_user_occupation, apview.jct_user_levels, " +
 					"apview.jct_as_question_desc, apview.jct_as_question_sub_desc, " +
-					"apview.jct_as_answar_desc from ActionPlanView apview");
+					"apview.jct_as_answar_desc from jct_action_plan_view apview");
 			if ((occupation.trim().length() > 0) ) {
 				queryBldr.append(" where apview.jct_user_occupation = :fnGrp ");
 				queryBldr.append(" and apview.jct_as_created_by in (" + jrNoBuilder.toString() + ") and apview.jct_user_occupation IS NOT NULL and jct_status_id="+statusId+" and jct_action_plan_soft_delete="+softDel+"");
@@ -579,7 +579,7 @@ public class ReportDAOImpl implements IReportDAO {
 		StringBuilder maxHeaderId = new StringBuilder("");
 		List<Object> returnList = null;
 		List<String> jrList = null;
-		queryBldr = new StringBuilder("Select max(apview.jct_as_header_id) from ActionPlanView apview");
+		queryBldr = new StringBuilder("Select max(apview.jct_as_header_id) from jct_action_plan_view apview");
 		if ((function.trim().length() > 0) && (jobLevel.trim().length() > 0)) {
 			queryBldr.append(" where apview.jct_user_function_group = :fnGrp " +
 					"and apview.jct_user_levels = :jLevel and jct_status_id=5 and jct_action_plan_soft_delete=1 group by jct_as_created_by");
@@ -637,7 +637,7 @@ public class ReportDAOImpl implements IReportDAO {
 			queryBldr = new StringBuilder("Select apview.jct_as_created_by, " +
 					"apview.jct_user_function_group, apview.jct_user_levels, " +
 					"apview.jct_as_question_desc, apview.jct_as_question_sub_desc, " +
-					"apview.jct_as_answar_desc from ActionPlanView apview");
+					"apview.jct_as_answar_desc from jct_action_plan_view apview");
 			if ((function.trim().length() > 0) && (jobLevel.trim().length() > 0)) {
 				queryBldr.append(" where apview.jct_user_function_group = :fnGrp " +
 						"and apview.jct_user_levels = :jLevel");
@@ -684,7 +684,7 @@ public class ReportDAOImpl implements IReportDAO {
 		StringBuilder jrNoBuilder = new StringBuilder("");
 		List<Object> returnList = null;
 		List<String> jrList = null;
-		queryBldr = new StringBuilder("Select distinct(asview.jct_as_created_by) from aftersketchview asview");
+		queryBldr = new StringBuilder("Select distinct(asview.jct_as_created_by) from jct_after_sketch_view asview");
 		if ((function.trim().length() > 0) && (jobLevel.trim().length() > 0)) {
 			queryBldr.append(" where asview.jct_user_function_group = :fnGrp " +
 					"and asview.jct_user_levels = :jLevel and jct_as_status_id = "+statusId+" and jct_as_soft_delete = "+softDel+"");
@@ -729,7 +729,7 @@ public class ReportDAOImpl implements IReportDAO {
 										+ "asview.jct_as_element_desc, " 			//5
 										+ "asview.jct_user_occupation , " 		    //6
 										+ "asview.jct_user_levels "					//7
-										+ "from aftersketchview asview");
+										+ "from jct_after_sketch_view asview");
 			if ((function.trim().length() > 0) && (jobLevel.trim().length() > 0)) {
 				queryBldr.append(" where asview.jct_user_function_group = :fnGrp " +
 						"and asview.jct_user_levels = :jLevel");
@@ -811,7 +811,7 @@ public class ReportDAOImpl implements IReportDAO {
 		StringBuilder maxHeaderId = new StringBuilder("");
 		List<Object> returnList = null;
 		List<String> jrList = null;
-		queryBldr = new StringBuilder("select max(jct_as_header_id),jct_as_created_by from aftersketchview asview");
+		queryBldr = new StringBuilder("select max(jct_as_header_id),jct_as_created_by from jct_after_sketch_view asview");
 		if ((function.trim().length() > 0) && (jobLevel.trim().length() > 0)) {
 			queryBldr.append(" where asview.jct_user_function_group = :fnGrp " +
 					"and asview.jct_user_levels = :jLevel and jct_as_status_id = 5 and jct_as_soft_delete = 1 group by jct_as_created_by");
@@ -875,7 +875,7 @@ public class ReportDAOImpl implements IReportDAO {
 										+ "asview.jct_as_element_desc, " 			//5
 										+ "asview.jct_user_function_group , " 		//6
 										+ "asview.jct_user_levels "					//7
-										+ "from aftersketchview asview");
+										+ "from jct_after_sketch_view asview");
 			if ((function.trim().length() > 0) && (jobLevel.trim().length() > 0)) {
 				queryBldr.append(" where asview.jct_user_function_group = :fnGrp " +
 						"and asview.jct_user_levels = :jLevel");
@@ -919,7 +919,7 @@ public class ReportDAOImpl implements IReportDAO {
 	@Transactional(propagation=Propagation.REQUIRED)
 	public java.math.BigInteger getTotalTaskCount(String emailId, int statusId, int softDel) throws DAOException {
 		LOGGER.info(">>>> ReportDAOImpl.getTotalTaskCount");
-		String taskString = "select count( distinct jct_as_task_desc ) from aftersketchview asview where "
+		String taskString = "select count( distinct jct_as_task_desc ) from jct_after_sketch_view asview where "
 				+ "jct_as_created_by = :email and jct_as_task_desc != '' and jct_as_status_id = "+statusId+" and jct_as_soft_delete = "+softDel+" ";
 		LOGGER.info("<<<< ReportDAOImpl.getTotalTaskCount");
 		return (java.math.BigInteger)sessionFactory.getCurrentSession().createSQLQuery(taskString).setParameter("email", emailId).uniqueResult();
@@ -928,7 +928,7 @@ public class ReportDAOImpl implements IReportDAO {
 	@Transactional(propagation=Propagation.REQUIRED)
 	public java.math.BigInteger getTotalMappingCount(String emailId) throws DAOException {
 		LOGGER.info(">>>> ReportDAOImpl.getTotalMappingCount");
-		String taskString = "select count( distinct jct_as_element_desc ) from aftersketchview asview where "
+		String taskString = "select count( distinct jct_as_element_desc ) from jct_after_sketch_view asview where "
 				+ "jct_as_created_by = :email and jct_as_element_desc != '' and jct_as_soft_delete = 0";
 		LOGGER.info("<<<< ReportDAOImpl.getTotalMappingCount");
 		return (java.math.BigInteger)sessionFactory.getCurrentSession().createSQLQuery(taskString).setParameter("email", emailId).uniqueResult();
@@ -937,7 +937,7 @@ public class ReportDAOImpl implements IReportDAO {
 	@Transactional(propagation=Propagation.REQUIRED)
 	public java.math.BigInteger getTotalRoleCount(String emailId, int statusId, int softDel) throws DAOException {
 		LOGGER.info(">>>> ReportDAOImpl.getTotalRoleCount");
-		StringBuffer sb = new StringBuffer("select count( distinct jct_as_role_desc ) from aftersketchview asview where " +
+		StringBuffer sb = new StringBuffer("select count( distinct jct_as_role_desc ) from jct_after_sketch_view asview where " +
 				"jct_as_created_by = :email and jct_as_role_desc != '' and jct_as_status_id = "+statusId+" and jct_as_soft_delete = "+softDel+" " +
 						"and jct_as_role_desc != 'N/A'");
 		LOGGER.info("<<<< ReportDAOImpl.getTotalRoleCount");
@@ -949,7 +949,7 @@ public class ReportDAOImpl implements IReportDAO {
 		LOGGER.info(">>>> ReportDAOImpl.getASTotalCount");
 		StringBuilder jrNoBuilder = new StringBuilder("");
 		List<String> jrList = null;
-		jrNoBuilder = new StringBuilder("Select distinct(asview.jct_as_created_by) from aftersketchview asview");
+		jrNoBuilder = new StringBuilder("Select distinct(asview.jct_as_created_by) from jct_after_sketch_view asview");
 		if ((function.trim().length() > 0) && (jobLevel.trim().length() > 0)) {
 			if (null != emailIdList) {
 				jrNoBuilder.append(" where asview.jct_user_function_group = :fnGrp " +
@@ -1007,7 +1007,7 @@ public class ReportDAOImpl implements IReportDAO {
 		LOGGER.info(">>>> ReportDAOImpl.getASTotalCountMax");
 		StringBuilder jrNoBuilder = new StringBuilder("");
 		List<String> jrList = null;
-		jrNoBuilder = new StringBuilder("Select distinct(asview.jct_as_header_id) from aftersketchview asview");
+		jrNoBuilder = new StringBuilder("Select distinct(asview.jct_as_header_id) from jct_after_sketch_view asview");
 		if ((function.trim().length() > 0) && (jobLevel.trim().length() > 0)) {
 			jrNoBuilder.append(" where asview.jct_user_function_group = :fnGrp " +
 					"and asview.jct_user_levels = :jLevel and jct_as_status_id=5 and jct_as_soft_delete=1");
@@ -1034,7 +1034,7 @@ public class ReportDAOImpl implements IReportDAO {
 		LOGGER.info(">>>> ReportDAOImpl.getTotalCountActionPlan");
 		StringBuilder jrNoBuilder = new StringBuilder("");
 		List<String> jrList = null;
-		jrNoBuilder = new StringBuilder("Select distinct(apview.jct_as_created_by) from ActionPlanView apview");
+		jrNoBuilder = new StringBuilder("Select distinct(apview.jct_as_created_by) from jct_action_plan_view apview");
 		if((occupation.trim().length() > 0)){
 			if (emailIdList == null) {
 				jrNoBuilder.append(" where apview.jct_user_occupation = :fnGrp and jct_status_id="+statusId+" and jct_action_plan_soft_delete="+softDel+"");
@@ -1066,7 +1066,7 @@ public class ReportDAOImpl implements IReportDAO {
 		LOGGER.info(">>>> ReportDAOImpl.getTotalCountActionPlanMax");
 		StringBuilder jrNoBuilder = new StringBuilder("");
 		List<String> jrList = null;
-		jrNoBuilder = new StringBuilder("Select distinct(apview.jct_as_created_by) from ActionPlanView apview");
+		jrNoBuilder = new StringBuilder("Select distinct(apview.jct_as_created_by) from jct_action_plan_view apview");
 		if((function.trim().length() > 0) && (jobLevel.trim().length() > 0)){
 			jrNoBuilder.append(" where apview.jct_user_function_group = :fnGrp and apview.jct_user_levels = :jLevel and jct_status_id=5 and jct_action_plan_soft_delete=1");
 			jrList = sessionFactory.getCurrentSession().createSQLQuery(jrNoBuilder.toString()).setParameter("fnGrp", function).setParameter("jLevel", jobLevel).list();
@@ -1091,7 +1091,7 @@ public class ReportDAOImpl implements IReportDAO {
 		StringBuilder jrNoBuilder = new StringBuilder("");
 		List<Object> returnList = null;
 		List<String> jrList = null;
-		queryBldr = new StringBuilder("Select distinct(apview.jct_as_created_by) from ActionPlanView apview");
+		queryBldr = new StringBuilder("Select distinct(apview.jct_as_created_by) from jct_action_plan_view apview");
 		if((occupation.trim().length() > 0)){
 			queryBldr.append(" where apview.jct_user_occupation = :fnGrp and jct_status_id="+statusId+" and jct_action_plan_soft_delete="+softDel+"");
 			jrList = sessionFactory.getCurrentSession().createSQLQuery(queryBldr.toString()).setParameter("fnGrp", occupation).list();
@@ -1110,7 +1110,7 @@ public class ReportDAOImpl implements IReportDAO {
 				} 
 				size = size + 1;
 			}
-			queryBldr = new StringBuilder("Select apview.jct_as_created_by, apview.jct_user_occupation, apview.jct_user_levels, apview.jct_as_question_desc, apview.jct_as_question_sub_desc, apview.jct_as_answar_desc from ActionPlanView apview");
+			queryBldr = new StringBuilder("Select apview.jct_as_created_by, apview.jct_user_occupation, apview.jct_user_levels, apview.jct_as_question_desc, apview.jct_as_question_sub_desc, apview.jct_as_answar_desc from jct_action_plan_view apview");
 			if((occupation.trim().length() > 0)){
 				queryBldr.append(" where apview.jct_user_occupation = :fnGrp");
 				queryBldr.append(" and apview.jct_as_created_by in ("+jrNoBuilder.toString()+") and apview.jct_user_occupation IS NOT NULL and jct_status_id="+statusId+" and jct_action_plan_soft_delete="+softDel+"");
@@ -1160,7 +1160,7 @@ public class ReportDAOImpl implements IReportDAO {
 		StringBuilder maxHeaderId = new StringBuilder("");
 		List<Object> returnList = null;
 		List<String> jrList = null;
-		queryBldr = new StringBuilder("Select max(apview.jct_as_header_id) from ActionPlanView apview");
+		queryBldr = new StringBuilder("Select max(apview.jct_as_header_id) from jct_action_plan_view apview");
 		if((function.trim().length() > 0) && (jobLevel.trim().length() > 0)){
 			queryBldr.append(" where apview.jct_user_function_group = :fnGrp and apview.jct_user_levels = :jLevel and jct_status_id=5 and jct_action_plan_soft_delete=1 group by jct_as_created_by");
 			jrList = sessionFactory.getCurrentSession().createSQLQuery(queryBldr.toString()).setParameter("fnGrp", function).setParameter("jLevel", jobLevel).list();
@@ -1205,7 +1205,7 @@ public class ReportDAOImpl implements IReportDAO {
 					} 
 					size = size + 1;
 				}}
-			queryBldr = new StringBuilder("Select apview.jct_as_created_by, apview.jct_user_function_group, apview.jct_user_levels, apview.jct_as_question_desc, apview.jct_as_question_sub_desc, apview.jct_as_answar_desc from ActionPlanView apview");
+			queryBldr = new StringBuilder("Select apview.jct_as_created_by, apview.jct_user_function_group, apview.jct_user_levels, apview.jct_as_question_desc, apview.jct_as_question_sub_desc, apview.jct_as_answar_desc from jct_action_plan_view apview");
 			if((function.trim().length() > 0) && (jobLevel.trim().length() > 0)){
 				queryBldr.append(" where apview.jct_user_function_group = :fnGrp and apview.jct_user_levels = :jLevel");
 				queryBldr.append(" and apview.jct_as_header_id in ("+maxHeaderId.toString()+") and jct_status_id=5 and jct_action_plan_soft_delete=1");
@@ -1247,7 +1247,7 @@ public class ReportDAOImpl implements IReportDAO {
 		StringBuilder jrNoBuilder = new StringBuilder("");
 		List<Object> returnList = null;
 		List<String> jrList = null;
-		queryBldr = new StringBuilder("Select distinct(asview.jct_as_created_by) from aftersketchview asview");
+		queryBldr = new StringBuilder("Select distinct(asview.jct_as_created_by) from jct_after_sketch_view asview");
 		if((occupation.trim().length() > 0) ){
 			queryBldr.append(" where asview.jct_user_occupation = :fnGrp and jct_as_status_id="+statusId+" and jct_as_soft_delete="+softDel+"");
 			jrList = sessionFactory.getCurrentSession().createSQLQuery(queryBldr.toString()).setParameter("fnGrp", occupation).list();
@@ -1274,7 +1274,7 @@ public class ReportDAOImpl implements IReportDAO {
 										+ "asview.jct_as_element_desc , " 
 										+ "asview.jct_user_occupation , " 
 										+ "asview.jct_user_levels "
-										+ "from aftersketchview asview");
+										+ "from jct_after_sketch_view asview");
 			if((occupation.trim().length() > 0) ){
 				queryBldr.append(" where asview.jct_user_occupation = :fnGrp");
 				queryBldr.append(" and asview.jct_as_created_by in ("+jrNoBuilder.toString()+") and jct_as_status_id="+statusId+" and jct_as_soft_delete="+softDel+"");
@@ -1325,7 +1325,7 @@ public class ReportDAOImpl implements IReportDAO {
 		StringBuilder maxHeaderId = new StringBuilder("");
 		List<Object> returnList = null;
 		List<String> jrList = null;
-		queryBldr = new StringBuilder("Select max(asview.jct_as_header_id) from aftersketchview asview");
+		queryBldr = new StringBuilder("Select max(asview.jct_as_header_id) from jct_after_sketch_view asview");
 		if((function.trim().length() > 0) && (jobLevel.trim().length() > 0)){
 			queryBldr.append(" where asview.jct_user_function_group = :fnGrp and asview.jct_user_levels = :jLevel and jct_as_status_id=5 and jct_as_soft_delete=1 group by jct_as_created_by");
 			jrList = sessionFactory.getCurrentSession().createSQLQuery(queryBldr.toString()).setParameter("fnGrp", function).setParameter("jLevel", jobLevel).list();
@@ -1376,7 +1376,7 @@ public class ReportDAOImpl implements IReportDAO {
 										+ "asview.jct_as_element_desc , " 
 										+ "asview.jct_user_function_group , " 
 										+ "asview.jct_user_levels "
-										+ "from aftersketchview asview");
+										+ "from jct_after_sketch_view asview");
 			if((function.trim().length() > 0) && (jobLevel.trim().length() > 0)){
 				queryBldr.append(" where asview.jct_user_function_group = :fnGrp and asview.jct_user_levels = :jLevel");
 				queryBldr.append(" and asview.jct_as_header_id in ("+maxHeaderId.toString()+") and jct_as_status_id=5 and jct_as_soft_delete=1");
@@ -1416,10 +1416,10 @@ public class ReportDAOImpl implements IReportDAO {
 		LOGGER.info(">>>> ReportDAOImpl.getBsToAsList");
 		StringBuilder queryBldr = null;
 		StringBuilder jrNoBuilder = new StringBuilder("");
-		queryBldr = new StringBuilder("Select distinct(bsToAsview.jct_bs_to_as_created_by) from BeforeSketchToAfterSketchView bsToAsview");
+		queryBldr = new StringBuilder("Select distinct(bsToAsview.jct_bs_to_as_created_by) from jct_before_sketch_to_after_sketch_view bsToAsview");
 		List<Object> returnList = null;
 		List<String> jrList = null;
-		queryBldr = new StringBuilder("Select distinct(bsToAsview.jct_bs_to_as_created_by) from BeforeSketchToAfterSketchView bsToAsview");
+		queryBldr = new StringBuilder("Select distinct(bsToAsview.jct_bs_to_as_created_by) from jct_before_sketch_to_after_sketch_view bsToAsview");
 		if((occupation.trim().length() > 0)){
 			queryBldr.append(" where bsToAsview.jct_user_occupation = :fnGrp");
 			jrList = sessionFactory.getCurrentSession().createSQLQuery(queryBldr.toString()).setParameter("fnGrp", occupation).setFirstResult(recordIndex).setMaxResults(20).list();
@@ -1437,7 +1437,7 @@ public class ReportDAOImpl implements IReportDAO {
 				} 
 				size = size + 1;
 			}
-			queryBldr = new StringBuilder("Select bsToAsview.jct_bs_to_as_created_by, bsToAsview.jct_user_occupation, bsToAsview.jct_user_levels, bsToAsview.jct_diff_status, bsToAsview.jct_bs_task_desc, bsToAsview.jct_as_task_desc, bsToAsview.jct_diff_task_desc, bsToAsview.jct_bs_energy, bsToAsview.jct_as_energy, bsToAsview.jct_diff_energy from BeforeSketchToAfterSketchView bsToAsview");
+			queryBldr = new StringBuilder("Select bsToAsview.jct_bs_to_as_created_by, bsToAsview.jct_user_occupation, bsToAsview.jct_user_levels, bsToAsview.jct_diff_status, bsToAsview.jct_bs_task_desc, bsToAsview.jct_as_task_desc, bsToAsview.jct_diff_task_desc, bsToAsview.jct_bs_energy, bsToAsview.jct_as_energy, bsToAsview.jct_diff_energy from jct_before_sketch_to_after_sketch_view bsToAsview");
 			if((occupation.trim().length() > 0)){
 				queryBldr.append(" where bsToAsview.jct_user_occupation = :fnGrp");
 				queryBldr.append(" and bsToAsview.jct_soft_delete=0 and bsToAsview.jct_bs_to_as_created_by in ("+jrNoBuilder.toString()+")");
@@ -1463,7 +1463,7 @@ public class ReportDAOImpl implements IReportDAO {
 		LOGGER.info(">>>> ReportDAOImpl.getTotalCountBsToAs");
 		StringBuilder jrNoBuilder = new StringBuilder("");
 		List<String> jrList = null;
-		jrNoBuilder = new StringBuilder("Select distinct(bsToAsview.jct_bs_to_as_created_by) from BeforeSketchToAfterSketchView bsToAsview");
+		jrNoBuilder = new StringBuilder("Select distinct(bsToAsview.jct_bs_to_as_created_by) from jct_before_sketch_to_after_sketch_view bsToAsview");
 		if((function.trim().length() > 0) && (jobLevel.trim().length() > 0)){
 			jrNoBuilder.append(" where bsToAsview.jct_user_occupation = :fnGrp ");
 			jrList = sessionFactory.getCurrentSession().createSQLQuery(jrNoBuilder.toString()).setParameter("fnGrp", function).setParameter("jLevel", jobLevel).list();
@@ -1481,10 +1481,10 @@ public class ReportDAOImpl implements IReportDAO {
 		LOGGER.info(">>>> ReportDAOImpl.getBsToAsListForExcel");
 		StringBuilder queryBldr = null;
 		StringBuilder jrNoBuilder = new StringBuilder("");
-		queryBldr = new StringBuilder("Select distinct(bsToAsview.jct_bs_to_as_created_by) from BeforeSketchToAfterSketchView bsToAsview");
+		queryBldr = new StringBuilder("Select distinct(bsToAsview.jct_bs_to_as_created_by) from jct_before_sketch_to_after_sketch_view bsToAsview");
 		List<Object> returnList = null;
 		List<String> jrList = null;
-		queryBldr = new StringBuilder("Select distinct(bsToAsview.jct_bs_to_as_created_by) from BeforeSketchToAfterSketchView bsToAsview");
+		queryBldr = new StringBuilder("Select distinct(bsToAsview.jct_bs_to_as_created_by) from jct_before_sketch_to_after_sketch_view bsToAsview");
 		if((occupation.trim().length() > 0) ){
 			queryBldr.append(" where bsToAsview.jct_user_occupation = :fnGrp");
 			jrList = sessionFactory.getCurrentSession().createSQLQuery(queryBldr.toString()).setParameter("fnGrp", occupation).list();
@@ -1505,7 +1505,7 @@ public class ReportDAOImpl implements IReportDAO {
 			queryBldr = new StringBuilder("Select bsToAsview.jct_bs_to_as_created_by, bsToAsview.jct_user_occupation, " +
 					"bsToAsview.jct_user_levels, bsToAsview.jct_diff_status, bsToAsview.jct_bs_task_desc, " +
 					"bsToAsview.jct_as_task_desc, bsToAsview.jct_diff_task_desc, bsToAsview.jct_bs_energy, " +
-					"bsToAsview.jct_as_energy, bsToAsview.jct_diff_energy from BeforeSketchToAfterSketchView bsToAsview");
+					"bsToAsview.jct_as_energy, bsToAsview.jct_diff_energy from jct_before_sketch_to_after_sketch_view bsToAsview");
 			if((occupation.trim().length() > 0)){
 				queryBldr.append(" where bsToAsview.jct_user_occupation = :fnGrp");
 				queryBldr.append(" and bsToAsview.jct_soft_delete=0 and bsToAsview.jct_bs_to_as_created_by in ("+jrNoBuilder.toString()+")");
@@ -1563,7 +1563,7 @@ public class ReportDAOImpl implements IReportDAO {
 		LOGGER.info(">>>> ReportDAOImpl.getASDetailedViewForMappings");
 		StringBuilder qBuilder = new StringBuilder("");
 		//qBuilder.append("select distinct(asview.jct_as_element_desc) from aftersketchview asview where "
-		qBuilder.append("select asview.jct_as_element_desc from aftersketchview asview where "
+		qBuilder.append("select asview.jct_as_element_desc from jct_after_sketch_view asview where "
 				+ "asview.jct_as_element_code = :elementCode and asview.jct_as_created_by = :email and jct_as_status_id = "+statusId+" and jct_as_soft_delete = "+softDelete+"");
 		LOGGER.info("<<<< ReportDAOImpl.getASDetailedViewForMappings");
 		return sessionFactory.getCurrentSession().createSQLQuery(qBuilder.toString())
@@ -2256,7 +2256,7 @@ public class ReportDAOImpl implements IReportDAO {
 		StringBuilder jrNoBuilder = new StringBuilder("");
 		List<Object> returnList = null;
 		List<String> jrList = null;
-		queryBldr = new StringBuilder("Select distinct(bsview.jct_bs_created_by) from BeforeSketchView bsview");
+		queryBldr = new StringBuilder("Select distinct(bsview.jct_bs_created_by) from jct_before_sketch_view bsview");
 		if ((occupationCode.trim().length() > 0)) {
 			queryBldr.append(" where bsview.jct_user_occupation = :occupationCode " +
 					"					and jct_bs_status_id = "+status+" and jct_bs_soft_delete = "+softDelete+"");
@@ -2284,7 +2284,7 @@ public class ReportDAOImpl implements IReportDAO {
 					"bsview.jct_user_occupation, " +
 					"bsview.jct_user_levels, bsview.jct_bs_task_desc, " +
 					"bsview.jct_bs_energy, bsview.jct_bs_time_spent " +
-					"from BeforeSketchView bsview");
+					"from jct_before_sketch_view bsview");
 			if ((occupationCode.trim().length() > 0)) {
 				queryBldr.append(" where bsview.jct_user_occupation = :occupationCode ");
 				queryBldr.append(" and bsview.jct_bs_created_by in (" + jrNoBuilder.toString() + ") and jct_bs_status_id = "+status+" and jct_bs_soft_delete = "+softDelete+"");
@@ -2317,7 +2317,7 @@ public class ReportDAOImpl implements IReportDAO {
 		StringBuilder jrNoBuilder = new StringBuilder("");
 		List<String> jrList = null;
 		jrNoBuilder = new StringBuilder("Select distinct(bsview.jct_bs_created_by) " +
-				    						"from BeforeSketchView bsview");
+				    						"from jct_before_sketch_view bsview");
 		if ((occupationCode.trim().length() > 0)) {
 			if (emailIdList == null) {
 				jrNoBuilder.append(" where bsview.jct_user_occupation = :occupationCode and jct_bs_status_id = "+status+" and jct_bs_soft_delete = "+softDel+"");
@@ -2355,7 +2355,7 @@ public class ReportDAOImpl implements IReportDAO {
 		StringBuilder jrNoBuilder = new StringBuilder("");
 		List<Object> returnList = null;
 		List<String> jrList = null;
-		queryBldr = new StringBuilder("Select distinct(asview.jct_as_created_by) from aftersketchview asview");
+		queryBldr = new StringBuilder("Select distinct(asview.jct_as_created_by) from jct_after_sketch_view asview");
 		if ((occupationCode.trim().length() > 0)) {
 			queryBldr.append(" where asview.jct_user_occupation = :fnGrp " +
 					"and jct_as_status_id = "+statusId+" and jct_as_soft_delete = "+softDel+"");
@@ -2387,7 +2387,7 @@ public class ReportDAOImpl implements IReportDAO {
 										+ "asview.jct_as_element_desc, " 			//5
 										+ "asview.jct_user_occupation , "	 		//6
 										+ "asview.jct_user_levels "					//7
-										+ "from aftersketchview asview");
+										+ "from jct_after_sketch_view asview");
 			if ((occupationCode.trim().length() > 0) ) {
 				queryBldr.append(" where asview.jct_user_occupation = :fnGrp ");
 				queryBldr.append(" and asview.jct_as_created_by in (" + jrNoBuilder.toString() + ") and jct_as_status_id = "+statusId+" and jct_as_soft_delete = "+softDel+"");
@@ -2437,7 +2437,7 @@ public class ReportDAOImpl implements IReportDAO {
 		LOGGER.info(">>>> ReportDAOImpl.getASTotalCount");
 		StringBuilder jrNoBuilder = new StringBuilder("");
 		List<String> jrList = null;
-		jrNoBuilder = new StringBuilder("Select distinct(asview.jct_as_created_by) from aftersketchview asview");
+		jrNoBuilder = new StringBuilder("Select distinct(asview.jct_as_created_by) from jct_after_sketch_view asview");
 		if ((occupationCode.trim().length() > 0) ) {
 			if (null != emailIdList) {
 				jrNoBuilder.append(" where asview.jct_user_occupation = :fnGrp " +

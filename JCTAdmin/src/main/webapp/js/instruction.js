@@ -127,7 +127,7 @@ function populateInstructionDataTable(instructionData, instructionId, insType, v
 	// Changes by Rajan to match different URL context
 	if(videoLink) {
 		//adding /admin url  - HARDCODING
-		videoLink = "/admin" + videoLink;
+		videoLink = "https://s3-us-west-2.amazonaws.com/jobcrafting/" + videoLink;
 	}
 	// Changes by Rajan end
 	CKEDITOR.instances['editor1'].insertHtml(instructionData);

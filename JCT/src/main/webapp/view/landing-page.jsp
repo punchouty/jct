@@ -61,11 +61,11 @@
 					    <object data="../../JCT_VIDEO/JobCrafting_SWF.swf">
     						<embed src="../../JCT_VIDEO/JobCrafting_SWF.swf">
  						</object> -->
- 						<source src="/user/data/video/JCT_VIDEO/JobCrafting_MP4.mp4" type="video/mp4">
-					    <source src="/user/data/video/JCT_VIDEO/JobCrafting_WEBM.webm" type="video/webm">
-					    <source src="/user/data/video/JCT_VIDEO/JobCrafting_OGV.ogv" type="video/ogv">
-					    <object data="/user/data/video/JCT_VIDEO/JobCrafting_SWF.swf">
-    						<embed src="/user/data/video/JCT_VIDEO/JobCrafting_SWF.swf">
+ 						<source src="https://s3-us-west-2.amazonaws.com/jobcrafting/video/JobCrafting_MP4.mp4" type="video/mp4">
+					    <source src="https://s3-us-west-2.amazonaws.com/jobcrafting/video/JobCrafting_WEBM.webm" type="video/webm">
+					    <source src="https://s3-us-west-2.amazonaws.com/jobcrafting/video/JobCrafting_OGV.ogv" type="video/ogv">
+					    <object data="https://s3-us-west-2.amazonaws.com/jobcrafting/video/JobCrafting_SWF.swf">
+    						<embed src="https://s3-us-west-2.amazonaws.com/jobcrafting/video/JobCrafting_SWF.swf">
  						</object>
 					</video> 
                   </div>

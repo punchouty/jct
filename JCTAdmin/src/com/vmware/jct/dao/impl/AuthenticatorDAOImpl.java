@@ -407,7 +407,7 @@ public class AuthenticatorDAOImpl extends DataAccessObject implements IAuthentic
 		Integer successFailureFlag = 0; // 0: success
 		try {
 			successFailureFlag = (Integer) sessionFactory.getCurrentSession()
-					.createSQLQuery("SELECT deleteUsers(" + userId + ")")
+					.createSQLQuery("SELECT jct_delete_users(" + userId + ")")
 					.uniqueResult();
 			if (successFailureFlag == 1) {
 				result = "failure";

@@ -9,7 +9,7 @@
     <!-- <meta name="viewport" content="width=device-width" /> -->
     <!-- Bootstrap -->
   <!--   <link href="../css/bootstrap.css" rel="stylesheet"> Bootstrap framework css 
-    <link href="../css/style.css" rel="stylesheet"> Main stylesheet for every resolution  --> 
+    <link href="css/style.css" rel="stylesheet"> Main stylesheet for every resolution  --> 
     <link href="/admin/css/style_ipad.css" rel="stylesheet"> <!-- mainly effected for Ipad & less than 1280 resolution -->   
     <script type="text/javascript" src="/admin/js/common.js"></script>
 </head>

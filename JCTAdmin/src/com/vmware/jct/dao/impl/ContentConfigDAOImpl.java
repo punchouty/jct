@@ -1065,7 +1065,7 @@ public class ContentConfigDAOImpl extends DataAccessObject implements IContentSe
 			String newName, String prevoiusDesc, String newDesc)
 			throws DAOException {
 		LOGGER.info(">>>>>> ContentConfigDAOImpl.updateMappingFrozen");
-		sessionFactory.getCurrentSession().createSQLQuery("SELECT global_profile_change_mapping_attrs" +
+		sessionFactory.getCurrentSession().createSQLQuery("SELECT jct_global_profile_change_mapping_attrs" +
 				"('"+code+"', '"+prevoiusName+"', '"+newName+"', '"+prevoiusDesc+"', '"+newDesc+"')").uniqueResult();
 	}
 
@@ -1075,7 +1075,7 @@ public class ContentConfigDAOImpl extends DataAccessObject implements IContentSe
 	public void updateQuestionFrozen(String code, String mainQuestion,
 			String prevoiusSubQtn, String newSubQtn) throws DAOException {
 		LOGGER.info(">>>>>> ContentConfigDAOImpl.updateQuestionFrozen");
-		sessionFactory.getCurrentSession().createSQLQuery("SELECT global_profile_change_question" +
+		sessionFactory.getCurrentSession().createSQLQuery("SELECT jct_global_profile_change_question" +
 				"('"+code+"', '"+mainQuestion+"', '"+prevoiusSubQtn+"', '"+newSubQtn+"')").uniqueResult();
 		
 	}

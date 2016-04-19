@@ -10,8 +10,8 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
      <link href="css/commonStyle.css" rel="stylesheet">
-	<link href="../css/less-768.css" rel="stylesheet">
-    <link href="../css/less-1280.css" rel="stylesheet"> 
+	<link href="css/less-768.css" rel="stylesheet">
+    <link href="css/less-1280.css" rel="stylesheet"> 
     <link href="css/datepicker.css" rel="stylesheet">
     <link href="css/bootstrap-multiselect.css" rel="stylesheet">
     <link rel="stylesheet" href="css/alertify.core.css" />
@@ -85,6 +85,7 @@
                      <div class="col-md-4 ">&nbsp;</div>
                      <div class="col-md-8 password_area">
                      <div class="col-md-12"><a href="#" data-toggle="modal" data-target="#myModal-frgtpass"><spring:message code="label.forgotPassword" /></a></div>
+                     <div class="col-md-12"><a href="http://tool.jobcrafting.com/admin/">Facilitator Login</a></div>
                      <div class="clearfix"></div>
                      </div> 
                      <div class="col-md-3">&nbsp;</div>  

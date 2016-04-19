@@ -65,7 +65,7 @@ public class AllReportsController {
 	public void generateExcelAllReport(@PathVariable("checkedPreference") String checkedPreference,
 			@PathVariable("reportName") String reportName,
 			HttpServletRequest request, HttpServletResponse response) {
-		LOGGER.info(">>>> AllReportsController.generateExcelAllReport");
+		LOGGER.info(">>>> AllReportsController.generateExcelAllReport : checkedPreference : " + checkedPreference + ", reportName : " + reportName);
 		String[] hiddenTokens = checkedPreference.split("~");
 		try {
 			Date today = new Date();
@@ -295,13 +295,13 @@ public class AllReportsController {
             sheet.setColumnHidden(1, true);
             sheet.setColumnHidden(2, true);
             
-            response.setContentType("application/vnd.ms-excel");
+            response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
             response.setHeader("Content-Disposition", "attachment; filename=Merged_Report - "+date+".xlsx");
             workbook.write(response.getOutputStream());
             response.getOutputStream().close();
 		} catch (Exception ex) {
 			LOGGER.error(ex.getLocalizedMessage());
-			//ex.printStackTrace();
+			ex.printStackTrace();
 		}
 		LOGGER.info("<<<< AllReportsController.generateExcelAllReport");
 	}

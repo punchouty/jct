@@ -146,7 +146,7 @@ function plotVideo (videoLink, desc) {
 	// Changes by Rajan to match different URL context
 	if(videoLink) {
 		//adding /admin url  - HARDCODING
-		videoLink = "/admin" + videoLink;
+		videoLink = "https://s3-us-west-2.amazonaws.com/jobcrafting/" + videoLink;
 	}
 	// Changes by Rajan end
 	document.getElementById("existing_data_div").style.display = "block";
@@ -180,7 +180,7 @@ function plotTextAndVideo (obj) {
 		// Changes by Rajan to match different URL context
 		var videoLink = obj.videoLink;
 		//adding /admin url  - HARDCODING
-		videoLink = "/admin" + videoLink;
+		videoLink = "https://s3-us-west-2.amazonaws.com/jobcrafting/" + videoLink;
 		document.getElementById('existing_list_Id').innerHTML = "Existing Video";
 		document.getElementById("hiddenFileName").value = obj.videoLink;	
 		//Earlier code // plot.innerHTML = "<div align='center'><video width='25%' poster='../img/frame.jpg' controls preload='auto'><source src='"+obj.videoLink+"' type='video/mp4'></video>";
