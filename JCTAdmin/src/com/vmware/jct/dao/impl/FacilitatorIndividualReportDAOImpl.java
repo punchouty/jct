@@ -160,11 +160,13 @@ private static final Logger LOGGER = LoggerFactory.getLogger(FacilitatorIndividu
 	String custID = "select jct_user_customer_id from jct_user where jct_user_email='"+jctEmail+"' and jct_role_id='3' and jct_user_soft_delete='0'";
 	String custIDVal = (String) sessionFactory.getCurrentSession().createSQLQuery(custID).uniqueResult();
 	String userId = "select jct_user_id from jct_user where jct_user_customer_id =(select jct_user_customer_id from jct_user where jct_user_email='"+jctEmail+"' and jct_role_id='3' and jct_user_soft_delete='0')and jct_role_id='1' and jct_user_soft_delete='0'";
-	userIdList = sessionFactory.getCurrentSession().createSQLQuery(userId).list();
-	String userIdExists = "SELECT jct_user_id FROM jct_user WHERE jct_user_id IN " +
-			"(SELECT jct_user_id FROM jct_user_login_info) " +
-			"and jct_user_customer_id = '"+custIDVal+"' " +
-			"and jct_role_id = '1' and jct_user_soft_delete = '0'";
+	userIdList = sessionFactory.getCurrentSession().createSQLQuery(userId).list();	
+	String userIdExists = "SELECT usr.jct_user_id " +
+			"FROM jct_user usr, jct_user_details userDtl " +
+			"WHERE usr.jct_user_id IN (SELECT jct_user_id FROM jct_user_login_info) " +
+			"and usr.jct_user_customer_id = '"+custIDVal+"' and usr.jct_role_id = '1' " +
+			"and usr.jct_user_soft_delete = '0' and userDtl.jct_user_details_group_name = '"+userGroupName+"' " +
+			"and usr.jct_user_id = userDtl.jct_user_id";	
 	userIdExistsList = sessionFactory.getCurrentSession().createSQLQuery(userIdExists).list();
 	int size = userIdList.size();
 	StringBuilder qBuilder = null;
@@ -180,18 +182,20 @@ private static final Logger LOGGER = LoggerFactory.getLogger(FacilitatorIndividu
 			qBuilder = new StringBuilder("select users.jct_user_name," +
 					"users.jct_account_expiration_date," +
 					"jct.jct_as_lastmodified_ts ," +
-					"sum((TIMESTAMPDIFF(hour, (select min(ob.jct_start_time) from jct_user_login_info ob where ob.jct_jobref_no NOT LIKE '%00000000ADPRV%' and ob.jct_user_id = "+userIdExistsList.get(j)+"), select max(obs.jct_end_time) from jct_user_login_info obs where obs.jct_jobref_no NOT LIKE '%00000000ADPRV%' and obs.jct_user_id = "+userIdExistsList.get(j)+")))," +
-					"sum(round((TIMESTAMPDIFF(minute, select min(obg.jct_start_time) from jct_user_login_info obg where obg.jct_jobref_no NOT LIKE '%00000000ADPRV%' and obg.jct_user_id = "+userIdExistsList.get(j)+", select max(obss.jct_end_time) from jct_user_login_info obss where obss.jct_jobref_no NOT LIKE '%00000000ADPRV%' and obss.jct_user_id = "+userIdExistsList.get(j)+")%60)))," +
+					"sum((TIMESTAMPDIFF(hour, (select min(ob.jct_start_time) from jct_user_login_info ob where ob.jct_jobref_no NOT LIKE '%00000000ADPRV%' and ob.jct_user_id = "+userIdExistsList.get(j)+"), (select max(obs.jct_end_time) from jct_user_login_info obs where obs.jct_jobref_no NOT LIKE '%00000000ADPRV%' and obs.jct_user_id = "+userIdExistsList.get(j)+"))))," +
+					"sum(round((TIMESTAMPDIFF(minute, (select min(obg.jct_start_time) from jct_user_login_info obg where obg.jct_jobref_no NOT LIKE '%00000000ADPRV%' and obg.jct_user_id = "+userIdExistsList.get(j)+"), (select max(obss.jct_end_time) from jct_user_login_info obss where obss.jct_jobref_no NOT LIKE '%00000000ADPRV%' and obss.jct_user_id = "+userIdExistsList.get(j)+"))%60)))," +
 					"(select max(myObj.jct_page_info) from jct_user_login_info myObj where myObj.jct_jobref_no NOT LIKE '%00000000ADPRV%' and myObj.jct_user_id = "+userIdExistsList.get(j)+" and myObj.jct_user_login_info_id = (select max(otr.jct_user_login_info_id) from jct_user_login_info otr where otr.jct_jobref_no NOT LIKE '%00000000ADPRV%' and otr.jct_user_id = "+userIdExistsList.get(j)+")) as page , dtl.jct_user_details_group_name, " +
+					"dtl.jct_user_details_last_name, dtl.jct_user_details_first_name " +
 					"from jct_user_login_info jct,jct_user users, jct_user_details dtl " +
 					"where jct.jct_jobref_no NOT LIKE '%00000000ADPRV%' and jct.jct_user_id = '"+userIdExistsList.get(j)+"'" +
 					"and users.jct_user_id= '"+userIdExistsList.get(j)+"' " +
 					"and users.jct_role_id = '1' " +
 					"and users.jct_user_soft_delete = '0'" +
 					"and users.jct_user_id = dtl.jct_user_id " +
-					"and users.jct_user_customer_id = '"+custIDVal+"' and dtl.jct_user_details_group_name = '"+userGroupName+"'" +
+					"and users.jct_user_customer_id = '"+custIDVal+"' and dtl.jct_user_details_group_name = '"+userGroupName+"'" + 
 					"and jct_start_time IN (select (usr.jct_start_time) from jct_user_login_info usr where jct.jct_user_id = usr.jct_user_id) " +
 					"order by dtl.jct_user_details_group_name");
+			
 				userLoginInfoList = sessionFactory.getCurrentSession().createSQLQuery(qBuilder.toString()).list();
 				finalList.add(userLoginInfoList);
 		}

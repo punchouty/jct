@@ -19,8 +19,8 @@ import com.vmware.jct.service.IStorageService;
 public class S3StorageService implements IStorageService {
 	
 	private static final String BUCKET_NAME = "jobcrafting";
-	private static final String AWS_ACCESS_KEY_ID = "AKIAJRXTJXBPVSPPUKZQ";
-	private static final String AWS_SECRET_ACCESS_KEY = "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";
+	private static final String AWS_ACCESS_KEY_ID = "CHANGE_ME";
+	private static final String AWS_SECRET_ACCESS_KEY = "CHANGE_ME";
 	
 //	static {
 //		System.getProperties().put("AWS_ACCESS_KEY_ID", AWS_ACCESS_KEY_ID);

@@ -224,7 +224,7 @@ public class FacilitatorIndividualReportServiceImpl implements IFacilitatorIndiv
 			finalList1 = (List) viewList.get(i);
 			if(finalList1.size() > 0) {
 				for(int index = 0;index < finalList1.size();index++){
-					Object[] innerObj = (Object[])finalList1.get(index);
+					Object[] innerObj = (Object[])finalList1.get(index);					
 					if(innerObj.length > 6) {
 						// Fetch the list of time spent
 						List<JctUserLoginInfo> list = (List<JctUserLoginInfo>) iFacilitatorIndividualReportDAO.getTime((String)innerObj[0]);
@@ -233,10 +233,12 @@ public class FacilitatorIndividualReportServiceImpl implements IFacilitatorIndiv
 						sb.append((String)innerObj[0]+"#");   	//User Name
 						sb.append((String)innerObj[6]+"#");
 						sb.append((java.sql.Timestamp)innerObj[1]+"#");   //Expiry
-						sb.append((BigInteger)innerObj[4]+"#");					
+						sb.append((BigDecimal)innerObj[4]+"#");					
 						sb.append((java.sql.Timestamp)innerObj[2]+"#");   // Start Time
-						//sb.append((BigInteger)innerObj[3]+"#"); // Total Time Spent
+						
+						//sb.append((BigDecimal)innerObj[3]+"#"); // Total Time Spent
 						sb.append(totalTime+"#");
+						
 						if(null != (String)innerObj[7] && (!innerObj[7].toString().equals(""))){ // last name
 							sb.append((String)innerObj[7]+"#");
 						} else {
@@ -253,15 +255,14 @@ public class FacilitatorIndividualReportServiceImpl implements IFacilitatorIndiv
 						} else {
 							sb.append("N/A"+"#");
 						}
-						//Page Info
-						} else {
+					} else {					
 						sb.append((String)innerObj[0]+"#");   	//User Name
 						sb.append((String)innerObj[2]+"#");
-						sb.append((java.sql.Timestamp)innerObj[1]+"#");   //Expiry				
-						sb.append("N/A"+"#");   // Start Time
-						sb.append("N/A"+"#"); // Total Time Spent
-						sb.append("N/A"+"#");	
-						/*if(null != (String)innerObj[3] && (!innerObj[3].toString().equals(""))){ 
+						sb.append((java.sql.Timestamp)innerObj[1]+"#");   //Expiry
+						sb.append("00"+"#");	
+						sb.append("N/A"+"#");
+						sb.append("00"+"#");	
+						if(null != (String)innerObj[3] && (!innerObj[3].toString().equals(""))){ // last name
 							sb.append((String)innerObj[3]+"#");
 						} else {
 							sb.append("N/A"+"#");
@@ -270,7 +271,9 @@ public class FacilitatorIndividualReportServiceImpl implements IFacilitatorIndiv
 							sb.append((String)innerObj[4]+"#");
 						} else {
 							sb.append("N/A"+"#");
-						}	*/				
+						}
+						sb.append("N/A"+"#");
+							
 					}
 				}
 				sb.append("$$$");

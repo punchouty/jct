@@ -6,7 +6,8 @@ import java.io.IOException;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.EnvironmentVariableCredentialsProvider;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
@@ -18,12 +19,13 @@ public class AwsTest {
 	//http://jobcrafting.s3-website-us-west-2.amazonaws.com/images/profile1.jpg
 	private static String bucketName = "jobcrafting";
 	private static String keyName = "images/profile1.jpg";
-	private static String uploadFileName = "/Users/rpunch/Documents/tmp/img1.jpg";
-
+	private static String uploadFileName = "/Users/rajan/Documents/tmp/img.JPG";
+	private static final String AWS_ACCESS_KEY_ID = "CHANGE_ME";
+	private static final String AWS_SECRET_ACCESS_KEY = "CHANGE_ME";
+	
+	
 	public static void main(String[] args) throws IOException {
-		System.getProperties().put("AWS_ACCESS_KEY_ID", "AKIAJRXTJXBPVSPPUKZQ");
-		System.getProperties().put("AWS_SECRET_ACCESS_KEY", "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");
-		AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider());
+		AmazonS3 s3client = new AmazonS3Client(new BasicAWSCredentials(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY));
 		try {
 			System.out.println("Uploading a new object to S3 from a file\n");
 			File file = new File(uploadFileName);

@@ -2470,8 +2470,7 @@ function findIdByRole(jsonObjOval, jsonObjElememt){
 			var extremeLeftElement = jsonObjElememt[j]["horizontalLeftPos"];
 			var extremeTopElement = jsonObjElememt[j]["verticalTopPos"];	
 			if(divElementId.search("divImg_") != -1) {			
-				if(leftElement>leftOval && topElement>topOval && extremeLeftElement<extremeLeftOval && extremeTopElement<extremeTopOval){
-					alert(divElementId);
+				if(leftElement>leftOval && topElement>topOval && extremeLeftElement<extremeLeftOval && extremeTopElement<extremeTopOval){					
 					unitJ["RoleId"] = divOvalId;
 					unitJ["RoleValue"] = cloneValue.replace(/,/g, "-_-");
 					unitJ["ElementId"+j] = divElementId;			

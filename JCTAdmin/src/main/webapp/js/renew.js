@@ -26,7 +26,7 @@ $(document).ready(function() {
 		$("#noOfUserFacilitatorDiv").show();
 		$("#renewTypeRadioProxy").hide();
 		$("#emalIndividualDivProxy").show();
-		document.getElementById("existingUsersTableId").innerHTML = "<div align='center'><br /><br /><br /><img src='../img/search.png'><br /><div class='textStyleNoExist'>Provide customer Id of the facilitator to find details.</div><br/></div>";
+		document.getElementById("existingUsersTableId").innerHTML = "<div align='center'><br /><br /><br /><img src='../img/search.png'><br /><div class='textStyleNoExist'>Provide customer's emailId of the facilitator to find details.</div><br/></div>";
 		
 	}
 });
@@ -459,7 +459,7 @@ function clearAllFacilitatorData(){
 	$("#paymentDtCash, #datepicker, #totalAmount, #facilitatorIdSearch").val('');
 	$('.inputRightSide').hide();
 	$('.inputRightSide input').val('');
-	document.getElementById("existingUsersTableId").innerHTML = "<div align='center'><br /><br /><br /><img src='../img/search.png'><br /><div class='textStyleNoExist'>Provide customer Id of the facilitator to find details.</div><br/></div>";
+	document.getElementById("existingUsersTableId").innerHTML = "<div align='center'><br /><br /><br /><img src='../img/search.png'><br /><div class='textStyleNoExist'>Provide customer's emailId of the facilitator to find details.</div><br/></div>";
 }
 
 function clearAllIndividualData(){	
@@ -473,7 +473,7 @@ function clearAllIndividualData(){
 	$('#manual').prop('checked',true);	
 	$('.inputRightSide').hide();
 	$('.inputRightSide input').val('');	
-	document.getElementById("existingUsersTableId").innerHTML = "<div align='center'><br /><br /><br /><img src='../img/search.png'><br /><div class='textStyleNoExist'>Provide customer Id of the facilitator to find details.</div><br/></div>";
+	document.getElementById("existingUsersTableId").innerHTML = "<div align='center'><br /><br /><br /><img src='../img/search.png'><br /><div class='textStyleNoExist'>Provide customer's emailId of the facilitator to find details.</div><br/></div>";
 }
 /**
  * function calls for manual / csv entry field's hide/show 
@@ -538,12 +538,10 @@ $("#userEmail").blur(function(){
 				$(".loader_bg").fadeOut();
 			    $(".loader").hide();
 			    if(obj.statusCode == 204){	//	user exist
-			    	//console.log(obj);
 			    	pupolateExistingUserTable(obj.existingUsers);			    	
-			    } else {
-			    	// user not found
-			    	//$("#existing_data_div").show();
-			    	//$("#existingUsersTableId").show();
+			    } else {			    	
+			    	document.getElementById("expiryDuration").selectedIndex = '';
+					$('#expiryDuration').removeAttr("disabled")
 			    	document.getElementById("existingUsersTableId").innerHTML = "<div align='center'><br /><br /><br /><img src='../img/no-record.png'><br /><div class='textStyleNoExist'>No Record Found.</div><br/></div>";
 				}			    
 			});
@@ -561,7 +559,7 @@ $("#searchFaci").click(function(){
 	if (validateEmail(custId)) {
 		if(custId.length < 1){
 			alertify.alert("Please provide customer Id of the facilitator");
-			document.getElementById("existingUsersTableId").innerHTML = "<div align='center'><br /><br /><br /><img src='../img/search.png'><br /><div class='textStyleNoExist'>Provide customer Id of the facilitator to find details.</div><br/></div>";
+			document.getElementById("existingUsersTableId").innerHTML = "<div align='center'><br /><br /><br /><img src='../img/search.png'><br /><div class='textStyleNoExist'>Provide customer's emailId of the facilitator to find details.</div><br/></div>";
 			return false;
 		} else {
 			var model = Spine.Model.sub();
@@ -642,10 +640,16 @@ function pupolateExistingUserTable(existingUsers){
 		
 		if(result == "99") {
 			createdBy = "Facilitator";				
+			document.getElementById("expiryDuration").selectedIndex = '6';
+			document.getElementById("expiryDuration").setAttribute("disabled", "true");			
 		} else if (result == "98"){
-			createdBy = "Admin";		
+			createdBy = "Admin";	
+			document.getElementById("expiryDuration").selectedIndex = '';
+			$('#expiryDuration').removeAttr("disabled")	
 		} else {
 			createdBy = "Ecommerce";
+			document.getElementById("expiryDuration").selectedIndex = '';
+			$('#expiryDuration').removeAttr("disabled")	
 		}
 		tableStr = tableStr + "<tr class='user_list_row_width' bgcolor='"+trColor+"'><td align='center'>"+existingUsers[index].email+"</td><td align='center'>"+createdBy+"</td><td align='center'>"+userExpryDate+"</td>";			
 	}
@@ -786,14 +790,24 @@ function validateAllMandatoryFieldsGeneralUser(paymentMode) {
  */
 function prepareEmailIdString() {
 	emailIdCSVString = "";
-	var numberOfUsers = document.getElementById("inputNoOFUser").options[document.getElementById("inputNoOFUser").selectedIndex].value;
+	var numberOfUsers = "";
+	if(document.getElementById("inputNoOFUser")) {
+		numberOfUsers = document.getElementById("inputNoOFUser").options[document.getElementById("inputNoOFUser").selectedIndex].value;
+	} else {
+		numberOfUsers = 1;
+	}	 
 	var id = 1;
 	var firstName = "";
 	var lastName = "";
 	for (var index=0; index<numberOfUsers; index++) {
 		var emailString = document.getElementById("userEmail").value;
-		firstName = document.getElementById("firstNamelId_"+id).value.trim;
-		lastName = document.getElementById("lastNamelId_"+id).value.trim;
+		if(document.getElementById("firstNamelId_"+id)) {
+			firstName = document.getElementById("firstNamelId_"+id).value.trim;
+		} 
+		if(document.getElementById("lastNamelId_"+id)) {
+			lastName = document.getElementById("lastNamelId_"+id).value.trim;
+		}
+		
 		var expDuration = document.getElementById("expiryDuration").options[document.getElementById("expiryDuration").selectedIndex].value;
 		if (validateEmailId(emailString)) {
 			if (emailString.length > 5) {
@@ -1121,11 +1135,13 @@ function renewCSVAfterValidation() {
 	$('#myModal').modal('hide');
 	$(".loader_bg").fadeIn();
 	$(".loader").fadeIn();
-	var paymentMode = document.getElementById("paymentMode").options[document.getElementById("paymentMode").selectedIndex].value;
+	var paymentMode = document.getElementById("paymentMode").options[document.getElementById("paymentMode").selectedIndex].value;	
+	
 	if (paymentMode == "CHK") {
 		var paymentDate = document.getElementById("datepicker").value;
 		var chequeNos = document.getElementById("chequeno").value;
 		var totalAmountToBePaid = document.getElementById("totalAmount").value;
+		prepareEmailIdString();
 		var model = Spine.Model.sub();
 		model.configure("/admin/manageuser/renewGeneralUserCSV", "emailIdString",
 				"paymentDate", "numberOfUsers", "chequeNos", "totalAmountToBePaid",
