@@ -10,7 +10,7 @@
     <!-- Bootstrap -->
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/commonStyle.css" rel="stylesheet">
+    <link href="https://s3-us-west-2.amazonaws.com/jobcrafting/css/commonStyle.css" rel="stylesheet">
     <link href="../css/less-768.css" rel="stylesheet">
     <link href="../css/less-1280.css" rel="stylesheet">  
     <link href="../css/datepicker.css" rel="stylesheet">

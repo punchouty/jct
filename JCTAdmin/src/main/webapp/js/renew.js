@@ -1454,7 +1454,7 @@ return false;
 
 function downloadCSVFmt() {
 	var link = document.getElementById('downloadCSVFmt');
-	link.setAttribute("href", "../../admin/manageuser/downloadIndividualRenewCSVFile/Individual_Renew.csv");
+	link.setAttribute("href", "https://s3-us-west-2.amazonaws.com/jobcrafting/csv/Individual_Renew.csv");
 }
 
 /**

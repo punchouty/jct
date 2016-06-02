@@ -9,7 +9,7 @@
     <!-- Bootstrap -->
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/commonStyle.css" rel="stylesheet">
+    <link href="https://s3-us-west-2.amazonaws.com/jobcrafting/css/commonStyle.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/alertify.core.css" />
 	<link rel="stylesheet" href="../css/alertify.default.css" id="toggleCSS" />
 	<script src="../js/alertify.min.js"></script>

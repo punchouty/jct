@@ -738,15 +738,7 @@ function saveCSVEntry() {
  */
 function downloadCSVFmt() {
 	var link = document.getElementById('downloadCSVFmt');
-	link.setAttribute("href", "../../admin/manageuser/downloadCSVFile/Sample.csv");
-}
-
-/**
- * Function to download the template of csv file
- */
-function downloadCSVFmt() {
-	var link = document.getElementById('downloadCSVFmt');
-	link.setAttribute("href", "../../admin/manageuser/downloadCSVFile/Sample.csv");
+	link.setAttribute("href", "https://s3-us-west-2.amazonaws.com/jobcrafting/csv/Sample.csv");
 }
 function fieldsEnabled() {
 	var usrType = document.getElementById("selectUserType").options[document.getElementById("selectUserType").selectedIndex].value;
