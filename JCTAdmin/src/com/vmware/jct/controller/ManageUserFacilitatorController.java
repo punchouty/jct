@@ -702,7 +702,7 @@ public class ManageUserFacilitatorController extends BasicController {
 				manageVO.setStatusCode(StatusConstants.USER_REGISTERED_MAIL_SEND_ERROR_USERS);
 				LOGGER.error(e.getLocalizedMessage());
 			}
-		} else {
+		} else if (manageVO.getStatusCode() != StatusConstants.USER_PASSWORD_RESET_CANNOT_PROCEED) {			
 			manageVO.setStatusCode(StatusConstants.USER_PASSWORD_RESET_FAILURE);
 		}
 		LOGGER.info("<<<<<< ManageUserFacilitatorController.resetMassPassword");

@@ -228,7 +228,7 @@
                 	</div>
                 	<div class="single_form_item">
 	                    <p>
-						    <input type="button" class="btn_admin btn_admin-primary btn_admin-sm search_btn" value="Subscribe" id="buySubscriptionId" onclick="buyMoreSubscription()" />
+						    <input type="button" class="btn_admin btn_admin-primary btn_admin-sm search_btn" value="Purchase" id="buySubscriptionId" onclick="buyMoreSubscription()" />
 					    </p>
                     </div>	
                     <div class="single_form_item"><br/></div>

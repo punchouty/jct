@@ -184,7 +184,7 @@ public interface IReportService {
 	 * @return java.sql.Timestamp
 	 * @throws JCTException
 	 */
-	public java.sql.Timestamp getGroupCreationDate(String groupName) throws JCTException;
+	public java.sql.Timestamp getGroupCreationDate(Integer groupName) throws JCTException;
 	/**
 	 * Method returns list of users who have logged in atleast once
 	 * @param email
@@ -383,4 +383,6 @@ public interface IReportService {
 	public List<Object> getAfterSketchList(String occupationCode, int recordIndex) throws JCTException;
 	
 	public int getASTotalCount(String occupationCode) throws JCTException;
+	
+	public String getUserGroupNameById(int groupId) throws JCTException;
 }

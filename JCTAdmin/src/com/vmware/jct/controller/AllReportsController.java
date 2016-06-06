@@ -122,8 +122,8 @@ public class AllReportsController {
             	for ( int index = 0; index < infoList.size(); index ++ ){
                 	Object[] obj = (Object[]) infoList.get(index);
                 	String functionGrp = (String) obj[0];
-                	String jobLevel = (String) obj[1];
-                	String userGroupName = (String) obj[2];
+                	String jobLevel = (String) obj[1];               	
+                	String userGroupName =iReportService.getUserGroupNameById((Integer)obj[2]);
                 	
                 	valRow.createCell(dtls).setCellValue(functionGrp);
                 	dtls = dtls + 1;
@@ -135,7 +135,7 @@ public class AllReportsController {
                 	dtls = dtls + 1;
                 	
                 	//get group creation date
-                	java.sql.Timestamp creationDt = iReportService.getGroupCreationDate(userGroupName);
+                	java.sql.Timestamp creationDt = iReportService.getGroupCreationDate((Integer)obj[2]);
                 	valRow.createCell(dtls).setCellValue(creationDt.toString());
                 	dtls = dtls + 1;
                 	

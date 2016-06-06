@@ -1796,14 +1796,14 @@ public class ReportDAOImpl implements IReportDAO {
 		List<Object> returnList = null;	
 		if (emailId == null) {
 			queryBldr = new StringBuilder("select user.jct_user_email, "
-				+ "dtls.jct_user_details_function_group, dtls.jct_user_details_levels, dtls.jct_user_details_group_name  "
+				+ "dtls.jct_user_details_function_group, dtls.jct_user_details_levels, dtls.jct_user_details_group_id  "
 				+ "from jct_user user, jct_user_details dtls where user.jct_user_id in (select distinct(jct_user_id) "
 				+ "from jct_user_login_info) and user.jct_user_id=dtls.jct_user_id and user.jct_active_yn = 3 and "
 				+ "user.jct_user_soft_delete = 0 and user.jct_role_id=1 and dtls.jct_user_onet_occupation NOT IN ('NOT-ACTIVATED')");
 			returnList = sessionFactory.getCurrentSession().
 					createSQLQuery(queryBldr.toString()).list();
 		} else {
-			queryBldr = new StringBuilder("select dtls.jct_user_details_function_group, dtls.jct_user_details_levels, dtls.jct_user_details_group_name  "
+			queryBldr = new StringBuilder("select dtls.jct_user_details_function_group, dtls.jct_user_details_levels, dtls.jct_user_details_group_id  "
 					+ "from jct_user user, jct_user_details dtls where user.jct_user_id in (select distinct(jct_user_id) "
 					+ "from jct_user_login_info) and user.jct_user_id=dtls.jct_user_id and user.jct_active_yn = 3 and user.jct_user_soft_delete = 0 and "
 					+ "user.jct_user_email = :emailId and user.jct_role_id=1 and dtls.jct_user_onet_occupation NOT IN ('NOT-ACTIVATED')");
@@ -1817,10 +1817,10 @@ public class ReportDAOImpl implements IReportDAO {
 	}
 
 	@Transactional(propagation=Propagation.REQUIRED)
-	public java.sql.Timestamp getGroupCreationDate(String groupName) throws DAOException {
+	public java.sql.Timestamp getGroupCreationDate(Integer groupName) throws DAOException {
 		LOGGER.info(">>>> ReportDAOImpl.getGroupCreationDate");
 		return (java.sql.Timestamp) sessionFactory.getCurrentSession().
-				createSQLQuery("select jct_created_ts from jct_user_group where jct_user_group_desc = :groupName and jct_user_role_id = 2")
+				createSQLQuery("select jct_created_ts from jct_user_group where jct_user_group = :groupName")
 				.setParameter("groupName", groupName).uniqueResult();
 	}
 
@@ -2464,6 +2464,12 @@ public class ReportDAOImpl implements IReportDAO {
 		}
 		LOGGER.info("<<<< ReportDAOImpl.getASTotalCount");
 		return jrList;
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED)
+	public String getJctUserGroupNameById(int groupId) throws DAOException {
+		return (String) sessionFactory.getCurrentSession().getNamedQuery("fetchUserGroupNameById")
+				.setParameter("userGrpId", groupId).uniqueResult();
 	}
 
 }

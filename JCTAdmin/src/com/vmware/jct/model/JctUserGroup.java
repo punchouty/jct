@@ -66,7 +66,10 @@ import javax.persistence.Version;
 						"and userGroup.jctUserCustomerId = :customerId and userGroup.jctUserRoleId = :role"),
 	@NamedQuery(name = "fetchUserGroupByGrpName",
 				query = "from JctUserGroup userGroup " +
-						"where userGroup.jctUserGroupDesc = :userGrpDesc and userGroup.jctSoftDelete = 0 and userGroup.jctUserCustomerId= :customerId")
+						"where userGroup.jctUserGroupDesc = :userGrpDesc and userGroup.jctSoftDelete = 0 and userGroup.jctUserCustomerId= :customerId"),
+	@NamedQuery(name = "fetchUserGroupNameById",
+			query = "select jctUserGroupDesc from JctUserGroup userGroup " +
+					"where userGroup.jctUserGroup = :userGrpId and userGroup.jctSoftDelete = 0")
 })
 @Entity
 @Table(name = "jct_user_group")

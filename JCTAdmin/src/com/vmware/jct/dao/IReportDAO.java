@@ -277,7 +277,7 @@ public interface IReportDAO {
 	 * @return sql.timestamp
 	 * @throws DAOException
 	 */
-	public java.sql.Timestamp getGroupCreationDate(String groupName) throws DAOException;
+	public java.sql.Timestamp getGroupCreationDate(Integer groupName) throws DAOException;
 	/**
 	 * Method returns list of Logged in details for the supplied 
 	 * email id
@@ -491,4 +491,6 @@ public interface IReportDAO {
 	public List<Object> getAfterSketchList(List<String> emailIdList, String occupationCode, int recordIndex, int statusId, int softDel) throws DAOException;
 	
 	public List<String> getASTotalCount(List<String> emailId, String occupationCode, int statusId, int softDel) throws DAOException;
+	
+	public String getJctUserGroupNameById(int groupId) throws DAOException;
 }

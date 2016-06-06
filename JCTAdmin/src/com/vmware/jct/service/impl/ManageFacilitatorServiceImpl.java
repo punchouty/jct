@@ -505,9 +505,9 @@ public class ManageFacilitatorServiceImpl implements IManageFacilitatorService{
 		userVO.setEmail(emailId);
 		try {
 			List<JctUser> userList = serviceDAO.checkUserToResetPassword(userVO, updatedBy);
-			JctUser userObj = (JctUser) userList.get(0);
-			userObj.setJctPassword(encryptedPassword);
+			JctUser userObj = (JctUser) userList.get(0);			
 			if (userObj.getJctActiveYn() == CommonConstants.CREATED) {
+				userObj.setJctPassword(encryptedPassword);
 				status = serviceDAO.updateUserToResetPasswordFacilitator(userObj);
 			} else {
 				status = "changed";

@@ -792,7 +792,7 @@ public List<Object> getLoginInfoDetails(String emailId) throws JCTException {
 }
 
 @Transactional(propagation=Propagation.REQUIRED)
-public java.sql.Timestamp getGroupCreationDate(String groupName) throws JCTException {
+public java.sql.Timestamp getGroupCreationDate(Integer groupName) throws JCTException {
 	LOGGER.info(">>>> ReportServiceImpl.getGroupCreationDate");
 	java.sql.Timestamp crationDate = null;
 	try {
@@ -1468,5 +1468,19 @@ public String createPaymentReport( int userType ) throws JCTException {
 			
 		}
 		return count;
+	}
+
+
+	@Transactional(propagation=Propagation.REQUIRED)
+	public String getUserGroupNameById(int groupId) throws JCTException {
+		LOGGER.info(">>>> ReportServiceImpl.getUserGroupNameById");
+		String userGroupName = "";
+		try {
+			userGroupName = reportDAO.getJctUserGroupNameById(groupId);
+		} catch (DAOException e) {
+			LOGGER.error(e.getLocalizedMessage());
+		}
+		LOGGER.info("<<<< ReportServiceImpl.getUserGroupNameById");
+		return userGroupName;
 	}
 }

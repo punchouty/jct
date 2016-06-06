@@ -335,19 +335,19 @@ function goToNextPage(){
 			/************* check number of Value **************/
 			if ($('#value_pageWrap').children('.oval:visible').length<2) {
 				check = false;
-				alertify.alert("<img src='../img/alert-icon.png'><br /><p>Please select atleast 2 values from Value box.</p>");
+				alertify.alert("<img src='../img/alert-icon.png'><br /><p>Please select at least two Values.</p>");
 				return false;
 			} 
 			/************* check number of Strength **************/
 			else if($('#strength_pageWrap').children('.plus-sign:visible').length<2) {
 				check = false;
-				alertify.alert("<img src='../img/alert-icon.png'><br /><p>Please select atleast 2 strengths from Strength box.</p>");
+				alertify.alert("<img src='../img/alert-icon.png'><br /><p>Please select at least two Strengths.</p>");
 				return false;
 			} 		
 			/************* check number of Passion **************/
 			else if ($('#passion_pageWrap').children('.up-triangle:visible').length<2) {
 				check = false;
-				alertify.alert("<img src='../img/alert-icon.png'><br /><p>Please select atleast 2 passions from Passion box.</p>");
+				alertify.alert("<img src='../img/alert-icon.png'><br /><p>Please select at least two Passions.</p>");
 				return false;
 			}
 		}
