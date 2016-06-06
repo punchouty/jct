@@ -129,7 +129,7 @@ public class AppSettingsController extends BasicController {
 													"font-weight: normal; "+
 												"} "+
 								   "h5.logo{ "+
-								   			"background: url('/user/img/logo.png') no-repeat 0 center; "+
+								   			"background: url('https://s3-us-west-2.amazonaws.com/jobcrafting/images/logo.png') no-repeat 0 center; "+
 								   			"display: block; "+
 								   			"width: 203px; "+
 								   			"height:53px; "+
