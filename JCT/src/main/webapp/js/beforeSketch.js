@@ -174,6 +174,10 @@ $('#addtask').click(function() {
 			 var divIdx = "divImg_" + count+"_x";		
 			 var energyId = "energyId_" + count;
 			 var areaId = "areaId_" + count;
+			 /**
+			  * Added for lock and unlock feature
+			 */			
+			 var divLockId = "divImg_" + count+"_lock";
 			 if(navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/iPhone/i)){
 				 var $element = $('<div id="' + divId +'" class="col-md-4 single_task_item before_sketch_task draggableResizable" style="display:block; width:'+energyStyle+'px; height:'+energyStyle+'px;"><div class="col-md-12 task_item_top"><div class="col-md-3 col-xs-3 task" onclick=enableDraggableResizable("'+divId+'") onblur="disableDraggableResizable()">TASK</div><div class="col-md-6 col-xs-5 energy" onclick=enableDraggableResizable("'+divId+'") onblur="disableDraggableResizable()">Time/ Energy: </div><div class="col-md-2 energy_field"><input type="text" class="form-control-sketch input-sm_custom" id="'+energyId+'" value="'+energyValue+'" name="MMM" maxlength="2" onkeypress="return exceptNumberOnly(event, this)" onblur="return getEnergyValue(this)" onBlur="disableDraggableResizable()"/></div><div class="col-md-1 col-xs-1 energy_percent">%</div><div class="clearfix"></div></div><div class="col-md-12 task_item_botm"><textarea class="col-md-12 add_task_area" style="text-align: center;" id="'+areaId+'" type="text" name="areaName" value="value" placeholder="Add Task Label Here" maxlength="200" onkeypress="return disableKey(event)" onBlur="disableDraggableResizable()"></textarea></div><div id="' + divIdx +'" class="cross" onclick=deleteDiv("'+divId+'")><img src="../img/cross-black.png" alt="Delete" /></div><div id="' + divLockId +'" class="lock_unlock" onclick=lockUnlockDiv("'+divId+'","'+divLockId+'")><img src="../img/imgUnlock.png" alt="Lock" class="lock_unlock_img"/></div></div>');		
 			 }  else if(navigator.userAgent.match(/iPad/i)){

@@ -430,6 +430,7 @@ public class ManageUserFacilitatorController extends BasicController {
 		String customerId = node.get("customerId").toString().replaceAll("\"" , "");
 		String newUserGroup = node.get("newUserGroup").toString().replaceAll("\"" , "");
 		String userGroupUpper = node.get("userGroup").toString().replaceAll("\"" , "").toUpperCase().trim();
+		String faciName = "";
 		
 		StringTokenizer emailToken = new StringTokenizer(emailIdString, "~");
 		while (emailToken.hasMoreTokens()) {
@@ -493,8 +494,15 @@ public class ManageUserFacilitatorController extends BasicController {
 						int userMailSentFailedCounter = 0;
 						while (itr.hasNext()) {
 							NewUserDTO dto = (NewUserDTO) itr.next();
-							try {
-								mailer.intimateUser(dto.getEmailId(), dto.getPassword(), dto.getFirstName(),"register",null);
+							try {								
+								/**
+								 * Date : 22.06.2017 
+								 * facilitator name added in mail content
+								 */
+								//mailer.intimateUser(dto.getEmailId(), dto.getPassword(), dto.getFirstName(),"register",null);
+								faciName = userService.getFaciName(createdBy);
+								mailer.intimateUserByFaciliator(dto.getEmailId(), dto.getPassword(), "register", 
+										WordUtils.capitalize(dto.getFirstName()), createdBy, faciName);
 							} catch (MailingException e) {
 								service.saveCronUsers(saveUserDTO.getNewRegistration(), createdBy);
 								//manageVO.setStatusCode(StatusConstants.USER_REGISTERED_MAIL_SEND_ERROR_USERS);

@@ -1344,9 +1344,11 @@ public class AuthenticatingContoller extends BasicController {
 				userVO.setInitialJson("none");
 				userVO.setTotalTime("00:00:00");
 				userVO.setUrl("/user/view/beforeSketch.jsp");
+				//userVO.setUrl("/user/view/landing-page.jsp");
 				userVO.setIsCompleted(0);
 				userVO.setLastPage("none");
-				pageInfo = "/user/view/beforeSketch.jsp";
+				//pageInfo = "/user/view/beforeSketch.jsp";
+				pageInfo = "/user/view/landing-page.jsp";
 				userVO.setJobRefNo(jobRefNo);
 				userVO.setPageSequence(getPageSequence(pageInfo));
 				userVO.setIsCompleted(isCompleted);

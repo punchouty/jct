@@ -404,6 +404,16 @@ function connectToTool() {
 						sessionStorage.setItem("rowIdentity", obj.identifier);
 						sessionStorage.setItem("jobTitle", obj.jobTitle);
 						sessionStorage.setItem("isLogout", "N");
+						
+						if(obj.pageSequence == 1){
+							
+							sessionStorage.setItem("bktp", "Y");
+							sessionStorage.setItem("pageSequence", 1);
+							
+							//sessionStorage.setItem("snapShotURLS", obj.jctBaseString);
+							sessionStorage.setItem("myPage", "BS");
+						}
+						
 						if(obj.pageSequence == 2){
 							sessionStorage.setItem("snapShotURLS", obj.jctBaseString);
 							sessionStorage.setItem("myPage", "BS");
@@ -461,7 +471,8 @@ function connectToTool() {
 					params += ', fullscreen=yes';
 					params += ', scrollbars=1';
 					
-					windowHandle = window.open("/user/view/beforeSketch.jsp", 'windowname4', params);
+					//windowHandle = window.open("/user/view/beforeSketch.jsp", 'windowname4', params);
+					windowHandle = window.open("/user/view/landing-page.jsp", 'windowname4', params);
 					if (!windowHandle.closed)
 					window.closed = false;
 					$(".loader_bg").fadeOut();

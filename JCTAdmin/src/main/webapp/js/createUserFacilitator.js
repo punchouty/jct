@@ -885,7 +885,7 @@ function openDescPopupAll() {
  */
 function downloadCSVFmt() {
 	var link = document.getElementById('downloadCSVFmt');
-	link.setAttribute("href", "../../admin/manageuser/downloadCSVFile/Sample.csv");
+	link.setAttribute("href", "https://s3-us-west-2.amazonaws.com/jobcrafting/csv/Sample.csv");
 }
 
 /**
