@@ -23,6 +23,7 @@ public class CommonConstants {
 	
 	
 	/************************* APPLICATION STATUS **************************/
+	
 	public static final String SUCCESSFUL 							= "200";
 	public static final String PASSWORD_RESET_NOT_COMPLETE 			= "874";
 	public static final String CAPTCHA_VALIDATION_FAILED 			= "555";
